@@ -9,6 +9,7 @@
   padding: 2rem 3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .login-logo h1 {
@@ -17,11 +18,6 @@
 
 .logo-icon {
   color: coral;
-}
-
-.login-form {
-  /* justify-content: space-between; */
-  align-items: center;
 }
 
 .login-notification {
@@ -74,7 +70,16 @@
 }
 
 .input-field:focus {
-  border-bottom: 1px solid dodgerblue;
+  border-bottom: 2px solid dodgerblue;
+}
+
+#remember-me {
+  position: relative;
+  top: 0.8rem;
+}
+
+#checkbox-label {
+  margin-left: 1rem;
 }
 
 .extra-container {
@@ -108,7 +113,8 @@
 
 .login-extra a:hover,
 .login-extra a:active {
-  font-size: 1.7rem;
+  border-bottom: 2px solid darkblue;
+  padding-bottom: 0.5rem;
   color: #efeeea;
 }
 

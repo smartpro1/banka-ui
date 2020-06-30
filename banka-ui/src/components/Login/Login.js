@@ -8,12 +8,17 @@ class Login extends Component {
   };
 
   translateContainer = () => {
-    this.setState({ translateContainer: !this.state.translateContainer });
-    console.log("it's working");
+    this.setState({
+      translateContainer: !this.state.translateContainer,
+    });
   };
   render() {
     let translate = "extra-container";
-    if (this.state.translateContainer) translate = "extra-container translate";
+    let info = "?";
+    if (this.state.translateContainer) {
+      translate = "extra-container translate";
+      info = <i class="fa fa-lightbulb-o" aria-hidden="true"></i>;
+    }
     return (
       <div className="login">
         <div className="login-header">
@@ -50,15 +55,18 @@ class Login extends Component {
               />
             </div>
             {
-              //     <div className="input-container">
-              //     <input
-              //       className="input-field"
-              //       type="checkbox"
-              //       placeholder="Password"
-              //       name="remember-me"
-              //     />
-              //     <label>Remember login</label>
-              //   </div>
+              <div className="input-container">
+                <input
+                  className="remember-me"
+                  type="checkbox"
+                  placeholder="Password"
+                  name="remember-me"
+                  id="remember-me"
+                />
+                <label for="remember-me" id="checkbox-label">
+                  Remember me
+                </label>
+              </div>
             }
           </div>
           <button type="submit" className="login-btn">
@@ -71,7 +79,7 @@ class Login extends Component {
             <a href="/forgot-password">
               <i className="fa fa-unlock" aria-hidden="true">
                 {" "}
-                signup
+                sign up
               </i>
             </a>
             <br />
@@ -83,7 +91,7 @@ class Login extends Component {
               </i>
             </a>
           </div>
-          <div className="show-extra">?</div>
+          <div className="show-extra">{info}</div>
         </div>
       </div>
     );
