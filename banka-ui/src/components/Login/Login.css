@@ -1,0 +1,124 @@
+/* .login {
+  background-image: url("https://www.roberthalf.com/sites/default/files/styles/full_width_content_image_1x_small_480/public/2018-07/Compare-Salaries-FA-07-12-2018.jpg?itok=sHarDPpk");
+  background-size: cover;
+  min-height: 80vh;
+} */
+
+.login-header,
+.login-form {
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-logo h1 {
+  font-size: 3rem;
+}
+
+.logo-icon {
+  color: coral;
+}
+
+.login-form {
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.login-notification {
+  text-align: center;
+}
+
+.login-btn {
+  display: inline-block;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background: coral;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.login-btn:hover {
+  opacity: 0.8;
+}
+
+.form-wrapper {
+  margin-bottom: 1.5rem;
+  flex-basis: 70%;
+  /* border: 1px solid red; */
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/*Style the form icons*/
+.icon {
+  color: gray;
+  position: relative;
+  top: 8px;
+  font-weight: bold;
+}
+
+/*Style the input fields*/
+.input-field {
+  width: 100%;
+  padding: 1rem 1rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.input-field:focus {
+  border-bottom: 1px solid dodgerblue;
+}
+
+.extra-container {
+  display: flex;
+  align-items: center;
+  transform: translateX(-30%);
+  transition: transform 0.5s linear;
+}
+
+.extra-container.translate {
+  transform: translateX(0%);
+}
+
+.login-extra {
+  background: #6495ed;
+  width: 30%;
+  padding: 1.5rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #fff;
+}
+
+.login-extra.translate {
+  transform: translateX(-100%);
+}
+
+.login-extra a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.login-extra a:hover,
+.login-extra a:active {
+  font-size: 1.7rem;
+  color: #efeeea;
+}
+
+.show-extra {
+  width: 2.5rem;
+  height: 5rem;
+  background: darkblue;
+  padding-top: 1.2rem;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #fff;
+}
