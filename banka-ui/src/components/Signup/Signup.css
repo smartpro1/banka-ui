@@ -1,0 +1,66 @@
+.signup {
+  padding: 3rem;
+  text-align: center;
+  background: #add8e6;
+  min-height: 85vh;
+}
+
+.signup-logo {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.signup-logo a {
+  text-decoration: none;
+  color: darkblue;
+}
+
+#signup-h2 {
+  color: darkblue;
+}
+
+.signup-logo:hover {
+  opacity: 0.8;
+}
+
+.signup-container {
+  margin-top: 1rem;
+}
+
+.signup-input {
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.signup-container.radio {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+#male,
+#female,
+#others {
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.register-btn {
+  width: 90%;
+  padding: 15px 0;
+  border-radius: 100px;
+  outline: none;
+  border: none;
+  background: dodgerblue;
+  color: white;
+  text-align: center;
+  margin: 1.5rem 0;
+  opacity: 0.8;
+}
+
+.register-btn:hover {
+  opacity: 1;
+}
