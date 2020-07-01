@@ -87,7 +87,7 @@ class Login extends Component {
             <a href="/reset-password">
               <i className="fa fa-history" aria-hidden="true">
                 {" "}
-                &nbsp; reset password
+                &nbsp; forgot password?
               </i>
             </a>
           </div>

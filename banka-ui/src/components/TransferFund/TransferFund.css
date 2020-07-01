@@ -1,0 +1,22 @@
+.transfer-label {
+  display: block;
+}
+
+#transfer-btn {
+  background: coral;
+  opacity: 0.8;
+}
+
+#transfer-btn:hover {
+  opacity: 1;
+}
+
+.transfer-label.extra {
+  text-align: left;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+#amount {
+  text-align: right;
+}
