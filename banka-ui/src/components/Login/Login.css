@@ -119,6 +119,13 @@
   color: #efeeea;
 }
 
+.login-info {
+  margin: 0 2rem 2rem;
+  background: #e6e6fa;
+  padding: 1rem;
+  text-align: center;
+}
+
 .show-extra {
   width: 2.5rem;
   height: 5rem;

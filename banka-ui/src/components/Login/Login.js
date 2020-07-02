@@ -1,10 +1,25 @@
 import React, { Component } from "react";
 
 import "./Login.css";
+import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
 class Login extends Component {
-  state = {
-    translateContainer: false,
+  constructor() {
+    super();
+
+    this.state = {
+      username: "",
+      password: "",
+      isLoading: false,
+      translateContainer: false,
+      errors: {},
+    };
+  }
+
+  handleOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
   translateContainer = () => {
@@ -14,10 +29,10 @@ class Login extends Component {
   };
   render() {
     let translate = "extra-container";
-    let info = "?";
+    let info = <i className="fa fa-hand-o-left" aria-hidden="true"></i>;
     if (this.state.translateContainer) {
       translate = "extra-container translate";
-      info = <i class="fa fa-lightbulb-o" aria-hidden="true"></i>;
+      info = <i className="fa fa-lightbulb-o" aria-hidden="true"></i>;
     }
     return (
       <div className="login">
@@ -34,6 +49,7 @@ class Login extends Component {
           </div>
         </div>
 
+        <LoadSpinner />
         <form className="login-form">
           <div className="form-wrapper">
             <div className="input-container">
@@ -74,9 +90,12 @@ class Login extends Component {
           </button>
         </form>
 
+        <p className="login-info">
+          To signup or reset password click the hand icon below
+        </p>
         <div className={translate} onClick={this.translateContainer}>
           <div className="login-extra">
-            <a href="/forgot-password">
+            <a href="/signup">
               <i className="fa fa-unlock" aria-hidden="true">
                 {" "}
                 sign up
@@ -84,7 +103,7 @@ class Login extends Component {
             </a>
             <br />
             &nbsp;
-            <a href="/reset-password">
+            <a href="/forgot-password">
               <i className="fa fa-history" aria-hidden="true">
                 {" "}
                 &nbsp; forgot password?

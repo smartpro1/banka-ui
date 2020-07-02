@@ -1,0 +1,36 @@
+#logo-spinner {
+  width: 50px;
+  height: 50px;
+  color: darkblue;
+  border-radius: 50%;
+  background: #d3d3d3;
+  font-size: 12px;
+  padding-top: 5px;
+  text-align: center;
+  position: absolute;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+#logo-spinner.adjusted {
+  top: 24%;
+  left: 68%;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

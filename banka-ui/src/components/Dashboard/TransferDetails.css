@@ -1,0 +1,6 @@
+.transfer-details {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}
