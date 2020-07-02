@@ -63,7 +63,7 @@ class Login extends Component {
                   name="remember-me"
                   id="remember-me"
                 />
-                <label for="remember-me" id="checkbox-label">
+                <label htmlFor="remember-me" id="checkbox-label">
                   Remember me
                 </label>
               </div>
