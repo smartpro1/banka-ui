@@ -8,7 +8,12 @@ import Signup from "./components/Signup/Signup";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import TransferFund from "./components/TransferFund/TransferFund";
 import jwtDecode from "jwt-decode";
-import { setJwtToken } from "./securityUtils/SetJwtToken";
+import { setJwtToken } from "./securityUtils/setJwtToken";
+import store from "./store";
+import { LOGIN } from "./actions/types";
+import { logoutAction } from "./actions/userActions";
+import SecuredRoute from "./securityUtils/SecuredRoute";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -22,7 +27,7 @@ if (jwtToken) {
 
   const currentTime = Date.now() / 1000;
   if (decodedToken.exp < currentTime) {
-    store.dispatch(logoutAdmin());
+    store.dispatch(logoutAction());
     window.location.href = "/";
   }
 }

@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .login-logo h1 {
@@ -137,4 +138,12 @@
   color: #fff;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+}
+
+.login-err-mesg {
+  margin: 1rem 3rem;
+  background: lightyellow;
+  color: rgb(206, 108, 108);
+  padding: 1.2rem;
+  text-align: center;
 }

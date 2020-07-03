@@ -66,7 +66,6 @@ class SignUp extends Component {
   render() {
     const {
       fullname,
-      sex,
       phoneNumber,
       email,
       username,

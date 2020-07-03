@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
+import { loginAction } from "../../actions/userActions";
 import "./Login.css";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
@@ -22,18 +25,66 @@ class Login extends Component {
     });
   };
 
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ isLoading: true });
+    const { username, password } = this.state;
+
+    const userCredentials = {
+      username,
+      password,
+    };
+    const { loginAction, history } = this.props;
+    loginAction(userCredentials, history);
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+        isLoading: false,
+      });
+    }
+  };
+
   translateContainer = () => {
     this.setState({
       translateContainer: !this.state.translateContainer,
     });
   };
+
   render() {
+    const { username, password, isLoading, errors } = this.state;
+
     let translate = "extra-container";
     let info = <i className="fa fa-hand-o-left" aria-hidden="true"></i>;
     if (this.state.translateContainer) {
       translate = "extra-container translate";
       info = <i className="fa fa-lightbulb-o" aria-hidden="true"></i>;
     }
+
+    let isLoader = (
+      <button type="submit" className="login-btn">
+        <i className="fa fa-sign-in" aria-hidden="true"></i>
+      </button>
+    );
+
+    if (isLoading) {
+      isLoader = <LoadSpinner />;
+    }
+
+    let displayErrorMessage = "";
+
+    if (errors.credential || errors.username || errors.password) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+          &nbsp;invalid username or password
+        </div>
+      );
+    }
+
     return (
       <div className="login">
         <div className="login-header">
@@ -49,8 +100,8 @@ class Login extends Component {
           </div>
         </div>
 
-        <LoadSpinner />
-        <form className="login-form">
+        {displayErrorMessage}
+        <form className="login-form" onSubmit={this.handleOnSubmit}>
           <div className="form-wrapper">
             <div className="input-container">
               <i className="fa fa-user-o icon" aria-hidden="true"></i>
@@ -58,6 +109,10 @@ class Login extends Component {
                 className="input-field"
                 type="text"
                 placeholder="username"
+                name="username"
+                onChange={this.handleOnChange}
+                value={username}
+                required
               />
             </div>
 
@@ -67,7 +122,10 @@ class Login extends Component {
                 className="input-field"
                 type="password"
                 placeholder="password"
-                name="psw"
+                onChange={this.handleOnChange}
+                name="password"
+                value={password}
+                required
               />
             </div>
             {
@@ -85,9 +143,7 @@ class Login extends Component {
               </div>
             }
           </div>
-          <button type="submit" className="login-btn">
-            <i className="fa fa-sign-in" aria-hidden="true"></i>
-          </button>
+          {isLoader}
         </form>
 
         <p className="login-info">
@@ -117,4 +173,13 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginAction: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginAction })(Login);

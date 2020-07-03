@@ -2,7 +2,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { GET_ERRORS, LOGIN } from "./types";
 
-import { setJwtToken } from "../securityUtils/SetJwtToken";
+import { setJwtToken } from "../securityUtils/setJwtToken";
 
 export const signupAction = (userDetails, history) => async (dispatch) => {
   try {
@@ -35,6 +35,8 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     });
     history.push("/dashboard");
   } catch (err) {
+    console.log(err);
+    console.log(err.response.data);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
