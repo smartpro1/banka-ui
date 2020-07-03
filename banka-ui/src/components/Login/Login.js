@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { loginAction } from "../../actions/userActions";
 import "./Login.css";
@@ -151,20 +152,26 @@ class Login extends Component {
         </p>
         <div className={translate} onClick={this.translateContainer}>
           <div className="login-extra">
-            <a href="/signup">
+            <Link to="/signup">
               <i className="fa fa-unlock" aria-hidden="true">
                 {" "}
                 sign up
               </i>
-            </a>
-            <br />
-            &nbsp;
-            <a href="/forgot-password">
+            </Link>
+
+            <Link to="/forgot-password" className="login-extra-space">
               <i className="fa fa-history" aria-hidden="true">
                 {" "}
                 &nbsp; forgot password?
               </i>
-            </a>
+            </Link>
+
+            <Link to="/user-guide">
+              <i className="fa fa-book" aria-hidden="true">
+                {" "}
+                &nbsp; user guide
+              </i>
+            </Link>
           </div>
           <div className="show-extra">{info}</div>
         </div>

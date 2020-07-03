@@ -42,10 +42,10 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/dashboard" component={Dashboard} />
       </div>
 
       <Switch>
-        <SecuredRoute exact path="/dashboard" component={Dashboard} />
         <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
       </Switch>
     </Router>

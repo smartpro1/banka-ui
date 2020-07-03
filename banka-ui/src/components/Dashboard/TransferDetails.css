@@ -1,6 +1,26 @@
 .transfer-details {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.transfer-detail {
   background: #fff;
   display: flex;
   justify-content: space-between;
-  padding: 3rem;
+  align-items: center;
+  padding: 1rem;
+  background: #f7f7f7;
+  margin: 1rem 0;
+}
+
+.transfer-amount {
+  color: black;
+}
+
+.transfer-amount.debit {
+  color: red;
+}
+
+.transfer-amount.debit::before {
+  content: "- ";
 }
