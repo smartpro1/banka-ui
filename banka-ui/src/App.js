@@ -14,6 +14,8 @@ import { LOGIN } from "./actions/types";
 import { logoutAction } from "./actions/userActions";
 import SecuredRoute from "./securityUtils/SecuredRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
+import ForgotPIn from "./components/ForgotPin/ForgotPin";
+import ChangePin from "./components/ChangePin/ChangePin";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -43,6 +45,8 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/forgot-pin" component={ForgotPIn} />
+        <Route exact path="/change-pin" component={ChangePin} />
       </div>
 
       <Switch>

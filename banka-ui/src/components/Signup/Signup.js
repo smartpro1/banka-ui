@@ -23,9 +23,50 @@ class SignUp extends Component {
   }
 
   handleOnChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    const [name, value] = [event.target.name, event.target.value];
+    this.setState({ [name]: value });
+
+    // validation for phone number
+    if (name === "phoneNumber" && value.length > 1) {
+      let phoneNumberError = {};
+      let firstTwoDigits = value.substring(0, 2);
+      if (
+        firstTwoDigits !== "07" &&
+        firstTwoDigits !== "08" &&
+        firstTwoDigits !== "09"
+      ) {
+        phoneNumberError.phoneNumber =
+          "invalid format - phone number must start with 07, 08 or 09";
+        this.setState({ errors: phoneNumberError });
+      }
+
+      // check if from the third number are all digits
+      else if (value.length > 2 && !/^\d+$/.test(value.substring(2))) {
+        phoneNumberError.phoneNumber = "phone number must all be digits";
+        this.setState({ errors: phoneNumberError });
+      } else {
+        this.setState({ errors: phoneNumberError });
+      }
+    }
+
+    //  validation for confirm password
+    if (name === "confirmPassword" && value.length > 0) {
+      let confirmPasswordError = {};
+      const { password } = this.state;
+      if (password.length < 6) {
+        confirmPasswordError.confirmPassword =
+          "fill in password field first which cannot be empty or less than six characters";
+        this.setState({ errors: confirmPasswordError, confirmPassword: "" });
+        return;
+      }
+
+      if (value !== this.state.password) {
+        confirmPasswordError.confirmPassword = "passwords must match";
+        this.setState({ errors: confirmPasswordError });
+      } else {
+        this.setState({ errors: confirmPasswordError });
+      }
+    }
   };
 
   handleOnSubmit = (event) => {
@@ -75,8 +116,27 @@ class SignUp extends Component {
       errors,
     } = this.state;
 
+    let submitBtnClassName = "";
+    let btnNotAllowSubmit = ""; // allows submit by default
+
+    // check if errors object is empty
+    if (
+      !errors ||
+      (Object.keys(errors).length === 0 && errors.constructor === Object)
+    ) {
+      submitBtnClassName = "register-btn";
+      btnNotAllowSubmit = false;
+    } else {
+      submitBtnClassName = "register-btn error";
+      btnNotAllowSubmit = true;
+    }
+
     let isLoader = (
-      <button type="submit" className="register-btn">
+      <button
+        type="submit"
+        className={submitBtnClassName}
+        disabled={btnNotAllowSubmit}
+      >
         Submit
       </button>
     );
@@ -113,6 +173,7 @@ class SignUp extends Component {
               name="fullname"
               onChange={this.handleOnChange}
               value={fullname}
+              minLength="6"
               required
             />
             {errors.fullname && (
@@ -129,7 +190,7 @@ class SignUp extends Component {
                 name="sex"
                 id="male"
                 onChange={this.handleOnChange}
-                value="male"
+                value="M"
                 required
               />
             </label>
@@ -140,7 +201,7 @@ class SignUp extends Component {
                 name="sex"
                 id="female"
                 onChange={this.handleOnChange}
-                value="female"
+                value="F"
                 required
               />
             </label>
@@ -152,7 +213,7 @@ class SignUp extends Component {
                 name="sex"
                 id="others"
                 onChange={this.handleOnChange}
-                value="others"
+                value="-"
                 required
               />
             </label>
@@ -195,6 +256,7 @@ class SignUp extends Component {
               type="text"
               placeholder="username"
               name="username"
+              minLength="4"
               onChange={this.handleOnChange}
               value={username}
               required
@@ -211,6 +273,7 @@ class SignUp extends Component {
               name="password"
               placeholder="password"
               onChange={this.handleOnChange}
+              minLength="6"
               value={password}
             />
             {errors.password && (
@@ -225,6 +288,7 @@ class SignUp extends Component {
               name="confirmPassword"
               placeholder="confirm password"
               onChange={this.handleOnChange}
+              minLength="6"
               value={confirmPassword}
             />
             {errors.confirmPassword && (

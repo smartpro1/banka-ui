@@ -114,3 +114,7 @@
 .signup.loading {
   opacity: 0.8;
 }
+
+.register-btn.error {
+  cursor: not-allowed;
+}
