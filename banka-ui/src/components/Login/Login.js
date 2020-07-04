@@ -58,10 +58,16 @@ class Login extends Component {
     const { username, password, isLoading, errors } = this.state;
 
     let translate = "extra-container";
+    let handIcon = (
+      <p className="login-info">
+        To signup or reset password click the hand icon below
+      </p>
+    );
     let info = <i className="fa fa-hand-o-left" aria-hidden="true"></i>;
     if (this.state.translateContainer) {
       translate = "extra-container translate";
       info = <i className="fa fa-lightbulb-o" aria-hidden="true"></i>;
+      handIcon = "";
     }
 
     let isLoader = (
@@ -147,9 +153,7 @@ class Login extends Component {
           {isLoader}
         </form>
 
-        <p className="login-info">
-          To signup or reset password click the hand icon below
-        </p>
+        {handIcon}
         <div className={translate} onClick={this.translateContainer}>
           <div className="login-extra">
             <Link to="/signup">

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import TransferDetails from "./TransferDetails";
+import { Link } from "react-router-dom";
 
 import "./Dashboard.css";
+import Logo from "../Logo/Logo";
 export default function Dashboard() {
   const detailsArr = [
     {
@@ -39,36 +41,94 @@ export default function Dashboard() {
       transactionType={detailArr.transactionType}
     />
   ));
+
+  const [dashboardClass, setDashboardClass] = useState("dashboard");
+  const [sidebarClass, setsidebarClass] = useState("dashboard-sidebar");
+  const handleOnClick = () => {
+    dashboardClass === "dashboard"
+      ? setDashboardClass("dashboard translate")
+      : setDashboardClass("dashboard");
+    sidebarClass === "dashboard-sidebar"
+      ? setsidebarClass("dashboard-sidebar translate")
+      : setsidebarClass("dashboard-sidebar");
+  };
+
   return (
-    <div className="dashboard">
-      <div className="dashboard-top">
-        <div className="dashboard-nav">
-          <div className="dashboard-hamburger">
-            <input type="checkbox" id="checkbox-hack" />
-            <label htmlFor="checkbox-hack" id="checkbox-hack-label">
-              <div id="hamburger">
-                <span id="span1"></span>
-                <span id="span2"></span>
-                <span id="span3"></span>
-              </div>
-            </label>
+    <React.Fragment>
+      <div className={dashboardClass}>
+        <div className="dashboard-top">
+          <div className="dashboard-nav">
+            <div className="dashboard-hamburger">
+              <input type="checkbox" id="checkbox-hack" />
+              <label htmlFor="checkbox-hack" id="checkbox-hack-label">
+                <div id="hamburger" onClick={handleOnClick}>
+                  <span id="span1"></span>
+                  <span id="span2"></span>
+                  <span id="span3"></span>
+                </div>
+              </label>
+            </div>
+            <h3 className="dashboard-account-info">Account Info</h3>
+            <div className="logout" title="logout">
+              <i
+                className="fa fa-sign-out dashboard-logout"
+                aria-hidden="true"
+              ></i>
+            </div>
           </div>
-          <h3 className="dashboard-account-info">Account Info</h3>
-          <div className="logout" title="logout">
-            <i className="fa fa-power-off" aria-hidden="true"></i>
-          </div>
-        </div>
 
-        <div className="dashboard-account">
-          <div className="dashboard-account-details">
-            <p>Savings - 0123456789</p>
-            <h4>#10, 000.00</h4>
+          <div className="dashboard-account">
+            <div className="dashboard-account-details">
+              <p>Savings - 0123456789</p>
+              <h4>#10, 000.00</h4>
+            </div>
           </div>
-        </div>
 
-        <div className="chart"></div>
+          <div className="chart"></div>
+        </div>
+        {result}
       </div>
-      {result}
-    </div>
+      <div className={sidebarClass}>
+        <Logo className="dashboard-logo" />
+        <ul>
+          <li>
+            <Link to="/transfer-funds">
+              <i className="fa fa-share" aria-hidden="true"></i> &nbsp;Transfer
+              Funds
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="airtime-bill-payment">
+              <i className="fa fa-money" aria-hidden="true"></i>
+              &nbsp; Airtime and Bill Payment
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="change-pin">
+              <i className="fa fa-key" aria-hidden="true"></i>&nbsp;Change Pin
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="dummy-accounts">
+              <i className="fa fa-users" aria-hidden="true"></i>&nbsp;Dummy
+              Accounts
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/logout">
+              <i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </React.Fragment>
   );
 }
