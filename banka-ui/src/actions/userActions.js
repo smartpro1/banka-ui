@@ -54,3 +54,56 @@ export const logoutAction = () => (dispatch) => {
   });
   window.location.href = "/";
 };
+
+export const changePinAction = (pinCredentials, history) => async (
+  dispatch
+) => {
+  try {
+    await axios.post(`/api/v1/users/change-pin`, pinCredentials);
+    alert("A password reset mail has been sent to your email address");
+    history.push("/");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const forgotPasswordAction = (email, history) => async (dispatch) => {
+  try {
+    await axios.post(`/api/v1/users/forgot-password`, email);
+    alert("A password reset mail has been sent to your email address");
+    history.push("/");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const forgotPinAction = (email, history) => async (dispatch) => {
+  try {
+    await axios.post(`/api/v1/users/forgot-password`, email);
+    alert("A password reset mail has been sent to your email address");
+    history.push("/");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};

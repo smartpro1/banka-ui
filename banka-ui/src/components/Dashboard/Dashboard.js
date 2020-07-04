@@ -97,34 +97,32 @@ export default function Dashboard() {
               Funds
             </Link>
           </li>
-        </ul>
-        <ul>
           <li>
             <Link to="airtime-bill-payment">
               <i className="fa fa-money" aria-hidden="true"></i>
               &nbsp; Airtime and Bill Payment
             </Link>
           </li>
-        </ul>
-        <ul>
           <li>
             <Link to="change-pin">
-              <i className="fa fa-key" aria-hidden="true"></i>&nbsp;Change Pin
+              <i className="fa fa-key" aria-hidden="true"></i> &nbsp;Change Pin
             </Link>
           </li>
-        </ul>
-        <ul>
           <li>
             <Link to="dummy-accounts">
-              <i className="fa fa-users" aria-hidden="true"></i>&nbsp;Dummy
+              <i className="fa fa-users" aria-hidden="true"></i> &nbsp;Dummy
               Accounts
             </Link>
           </li>
-        </ul>
-        <ul>
           <li>
             <Link to="/logout">
-              <i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
+              <i className="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout
+            </Link>
+          </li>
+          <li>
+            <Link to="/logout">
+              <i className="fa fa-credit-card" aria-hidden="true"></i>{" "}
+              &nbsp;Shop With Card
             </Link>
           </li>
         </ul>
