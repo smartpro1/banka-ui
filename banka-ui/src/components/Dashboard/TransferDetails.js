@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CurrencyFormat from "react-currency-format";
 
 import "./TransferDetails.css";
 class TransferDetails extends Component {
@@ -17,7 +18,15 @@ class TransferDetails extends Component {
             <p>{date}</p>
             <h4>{description}</h4>
           </div>
-          <div className={transactionClass}>#{amount}</div>
+          <div className={transactionClass}>
+            &#x20A6;
+            <CurrencyFormat
+              value={amount}
+              displayType={"text"}
+              thousandSeparator={true}
+            />
+            {".00"}
+          </div>
         </div>
       </div>
     );

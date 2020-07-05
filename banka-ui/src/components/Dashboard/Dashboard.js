@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import TransferDetails from "./TransferDetails";
 import { Link } from "react-router-dom";
+import CurrencyFormat from "react-currency-format";
 
-import "./Dashboard.css";
 import Logo from "../Logo/Logo";
+import TransferDetails from "./TransferDetails";
+import "./Dashboard.css";
+
 export default function Dashboard() {
   const detailsArr = [
     {
@@ -80,7 +82,15 @@ export default function Dashboard() {
           <div className="dashboard-account">
             <div className="dashboard-account-details">
               <p>Savings - 0123456789</p>
-              <h4>#10, 000.00</h4>
+              <h4>
+                &#x20A6;
+                <CurrencyFormat
+                  value={100000000001000}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+                {".00"}
+              </h4>
             </div>
           </div>
 
@@ -114,15 +124,23 @@ export default function Dashboard() {
               Accounts
             </Link>
           </li>
+
+          <li>
+            <Link to="/profile">
+              <i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Profile
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/shop-product">
+              <i className="fa fa-credit-card" aria-hidden="true"></i>{" "}
+              &nbsp;Shop With Card
+            </Link>
+          </li>
+
           <li>
             <Link to="/logout">
               <i className="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout
-            </Link>
-          </li>
-          <li>
-            <Link to="/logout">
-              <i className="fa fa-credit-card" aria-hidden="true"></i>{" "}
-              &nbsp;Shop With Card
             </Link>
           </li>
         </ul>
