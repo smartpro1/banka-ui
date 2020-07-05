@@ -275,6 +275,7 @@ class SignUp extends Component {
               onChange={this.handleOnChange}
               minLength="6"
               value={password}
+              required
             />
             {errors.password && (
               <span className="error-message">{errors.password}</span>
@@ -290,6 +291,7 @@ class SignUp extends Component {
               onChange={this.handleOnChange}
               minLength="6"
               value={confirmPassword}
+              required
             />
             {errors.confirmPassword && (
               <span className="error-message">{errors.confirmPassword}</span>

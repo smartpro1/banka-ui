@@ -1,0 +1,39 @@
+.user-guide {
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.user-guide h2 {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.user-guide-short {
+  padding: 3rem;
+  background: #e6e6fa;
+}
+
+.user-guide-summary {
+  margin: 1.5rem 0;
+  font-size: 1.7rem;
+}
+
+.user-guide-short img {
+  width: 40%;
+  margin: 2rem 2rem;
+}
+
+.user-guide-bug {
+  margin: 0 2rem;
+  padding: 2rem 0;
+  color: coral;
+}
+
+.user-guide-detailed {
+  padding: 3rem;
+  background: #efeeea;
+}
+
+.user-guide-detailed-paragraph {
+  margin: 1.5rem 0;
+}

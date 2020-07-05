@@ -1,7 +1,10 @@
 .dashboard {
   transform: translate(0);
   transition: transform 0.5s;
+  max-height: 90vh;
+  overflow: auto;
 }
+
 .dashboard.translate {
   transform: translateX(75%);
 }

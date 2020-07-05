@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import ForgotPIn from "./components/ForgotPin/ForgotPin";
 import ChangePin from "./components/ChangePin/ChangePin";
 import UserProfile from "./components/UserProfile/UserProfile";
+import UserGuide from "./components/UserGuide/UserGuide";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -49,6 +50,8 @@ function App() {
         <Route exact path="/forgot-pin" component={ForgotPIn} />
         <Route exact path="/change-pin" component={ChangePin} />
         <Route exact path="/profile" component={UserProfile} />
+        <Route exact path="/transfer-funds" component={TransferFund} />
+        <Route exact path="/user-guide" component={UserGuide} />
       </div>
 
       <Switch>

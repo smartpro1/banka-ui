@@ -85,7 +85,7 @@ export default function Dashboard() {
               <h4>
                 &#x20A6;
                 <CurrencyFormat
-                  value={100000000001000}
+                  value={1000005}
                   displayType={"text"}
                   thousandSeparator={true}
                 />
