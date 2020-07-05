@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { logoutAction } from "../../actions/userActions";
 import CurrencyFormat from "react-currency-format";
 
 import Logo from "../Logo/Logo";
@@ -75,6 +76,7 @@ export default function Dashboard() {
               <i
                 className="fa fa-sign-out dashboard-logout"
                 aria-hidden="true"
+                onClick={logoutAction()}
               ></i>
             </div>
           </div>

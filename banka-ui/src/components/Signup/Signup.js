@@ -60,7 +60,7 @@ class SignUp extends Component {
         return;
       }
 
-      if (value !== this.state.password) {
+      if (value !== password) {
         confirmPasswordError.confirmPassword = "passwords must match";
         this.setState({ errors: confirmPasswordError });
       } else {

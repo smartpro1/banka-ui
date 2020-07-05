@@ -107,3 +107,20 @@ export const forgotPinAction = (email, history) => async (dispatch) => {
     });
   }
 };
+
+export const resetPasswordAction = (password, history) => async (dispatch) => {
+  try {
+    await axios.post(`/api/v1/users/reset-password`, password);
+    alert("password reset successful");
+    history.push("/login");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};

@@ -15,7 +15,7 @@ class ForgotPIn extends Component {
         <h2 id="signup-h2" className="fgt-password">
           Reset Pin
         </h2>
-        <form className="">
+        <form className="forgot-pin">
           <div className="signup-container">
             <input
               className="signup-input"
