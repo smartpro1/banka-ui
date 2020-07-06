@@ -120,6 +120,7 @@ class ChangePin extends Component {
               minLength="4"
               maxLength="4"
               name="pin"
+              disabled={isLoading}
               onChange={this.handleOnChange}
               value={pin}
               required
@@ -136,6 +137,7 @@ class ChangePin extends Component {
               maxLength="4"
               name="newPin"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               value={newPin}
               required
             />
@@ -153,6 +155,7 @@ class ChangePin extends Component {
               maxLength="4"
               name="confirmNewPin"
               value={confirmNewPin}
+              disabled={isLoading}
               onChange={this.handleOnChange}
               required
             />

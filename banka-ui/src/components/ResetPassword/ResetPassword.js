@@ -53,6 +53,16 @@ class ResetPassword extends Component {
     }
   };
 
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ isLoading: true });
+    const { password, confirmPassword } = this.state;
+    const token = this.props.location.search.substr(7);
+    const userPassDetails = { password, confirmPassword, token };
+    const { resetPasswordAction, history } = this.props;
+    resetPasswordAction(userPassDetails, history);
+  };
+
   render() {
     const { password, confirmPassword, isLoading, errors } = this.state;
     let submitBtnClassName = "";
@@ -94,12 +104,13 @@ class ResetPassword extends Component {
           </h3>
         </div>
         <h2 id="signup-h2" className="fgt-password">
-          ResetPassword
+          Reset Password
         </h2>
-        <form className="reset-password-form">
+        <form className="reset-password-form" onSubmit={this.handleOnSubmit}>
           <div className="signup-container">
             <input
               className="signup-input"
+              disabled={isLoading}
               type="password"
               name="password"
               placeholder="password"
@@ -121,6 +132,7 @@ class ResetPassword extends Component {
               placeholder="confirm password"
               onChange={this.handleOnChange}
               minLength="6"
+              disabled={isLoading}
               value={confirmPassword}
               required
             />

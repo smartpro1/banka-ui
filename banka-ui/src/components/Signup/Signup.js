@@ -140,7 +140,6 @@ class SignUp extends Component {
         Submit
       </button>
     );
-    let isLoaderClass = "signup";
 
     if (isLoading) {
       isLoader = (
@@ -149,11 +148,10 @@ class SignUp extends Component {
           <i className="fa fa-university logo-icon" aria-hidden="true"></i>
         </div>
       );
-      isLoaderClass = "signup loading";
     }
 
     return (
-      <div className={isLoaderClass}>
+      <div className="signup">
         <div className="signup-logo">
           <h3>
             <a href="/">
@@ -172,6 +170,7 @@ class SignUp extends Component {
               placeholder="fullname"
               name="fullname"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               value={fullname}
               minLength="6"
               required
@@ -190,6 +189,7 @@ class SignUp extends Component {
                 name="sex"
                 id="male"
                 onChange={this.handleOnChange}
+                disabled={isLoading}
                 value="M"
                 required
               />
@@ -201,6 +201,7 @@ class SignUp extends Component {
                 name="sex"
                 id="female"
                 onChange={this.handleOnChange}
+                disabled={isLoading}
                 value="F"
                 required
               />
@@ -213,6 +214,7 @@ class SignUp extends Component {
                 name="sex"
                 id="others"
                 onChange={this.handleOnChange}
+                disabled={isLoading}
                 value="-"
                 required
               />
@@ -227,6 +229,7 @@ class SignUp extends Component {
               name="phoneNumber"
               placeholder="phone number"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               value={phoneNumber}
               required
             />
@@ -242,6 +245,7 @@ class SignUp extends Component {
               placeholder="email"
               name="email"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               value={email}
               required
             />
@@ -258,6 +262,7 @@ class SignUp extends Component {
               name="username"
               minLength="4"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               value={username}
               required
             />
@@ -273,6 +278,7 @@ class SignUp extends Component {
               name="password"
               placeholder="password"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               minLength="6"
               value={password}
               required
@@ -289,6 +295,7 @@ class SignUp extends Component {
               name="confirmPassword"
               placeholder="confirm password"
               onChange={this.handleOnChange}
+              disabled={isLoading}
               minLength="6"
               value={confirmPassword}
               required
