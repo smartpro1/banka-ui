@@ -91,15 +91,12 @@ class ChangePin extends Component {
       </button>
     );
 
-    let isLoaderClass = "signup";
-
     if (isLoading) {
       isLoader = <LoadSpinner />;
-      isLoaderClass = "signup loading";
     }
 
     return (
-      <div className={isLoaderClass}>
+      <div className="signup">
         <div className="signup-logo">
           <h3>
             <a href="/">

@@ -93,6 +93,18 @@ class ResetPassword extends Component {
       isLoaderClass = "signup loading";
     }
 
+    let displayErrorMessage = "";
+
+    if (errors.invalidCredentialException) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-minus-circle" aria-hidden="true"></i> &nbsp;
+          {errors.invalidCredentialException}
+        </div>
+      );
+    }
+
     return (
       <div className="reset-password">
         <div className="signup-logo">
@@ -106,6 +118,7 @@ class ResetPassword extends Component {
         <h2 id="signup-h2" className="fgt-password">
           Reset Password
         </h2>
+        {displayErrorMessage}
         <form className="reset-password-form" onSubmit={this.handleOnSubmit}>
           <div className="signup-container">
             <input

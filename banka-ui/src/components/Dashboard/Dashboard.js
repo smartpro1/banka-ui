@@ -129,7 +129,8 @@ export default function Dashboard() {
 
           <li>
             <Link to="/profile">
-              <i class="fa fa-user-secret" aria-hidden="true"></i> &nbsp;Profile
+              <i className="fa fa-user-secret" aria-hidden="true"></i>{" "}
+              &nbsp;Profile
             </Link>
           </li>
 

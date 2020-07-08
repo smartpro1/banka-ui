@@ -84,6 +84,7 @@ export const forgotPasswordAction = (email, history) => async (dispatch) => {
       payload: {},
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
@@ -112,7 +113,7 @@ export const resetPasswordAction = (password, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/reset-password`, password);
     alert("password reset successful");
-    history.push("/login");
+    history.push("/");
     dispatch({
       type: GET_ERRORS,
       payload: {},
