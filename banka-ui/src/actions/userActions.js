@@ -84,7 +84,6 @@ export const forgotPasswordAction = (email, history) => async (dispatch) => {
       payload: {},
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

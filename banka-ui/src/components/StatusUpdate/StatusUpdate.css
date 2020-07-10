@@ -1,0 +1,36 @@
+.status-update {
+  background: white;
+  width: 30rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px rgb(71, 71, 71);
+}
+
+.status-update-link {
+  width: 150px;
+  background: mediumseagreen;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+  border-radius: 100px;
+  opacity: 0.8;
+}
+
+.status-update-link:hover {
+  opacity: 1;
+}
+
+.status-update-link.error {
+  background: rgb(209, 87, 87);
+}
+
+.status-update-description {
+  margin: 1.5rem 0;
+}

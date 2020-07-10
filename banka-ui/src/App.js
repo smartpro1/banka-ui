@@ -19,6 +19,7 @@ import ChangePin from "./components/ChangePin/ChangePin";
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserGuide from "./components/UserGuide/UserGuide";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import { ConfirmRegistration } from "./components/ConfirmRegistration/ConfirmRegistration";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -47,16 +48,21 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user-guide" component={UserGuide} />
-        <Route path="/password-reset" component={ResetPassword} />
-        <Route exact path="/change-pin" component={ChangePin} />
-        <Route exact path="/forgot-pin" component={ForgotPIn} />
-        <Route exact path="/forgot-password" component={ForgotPassword} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/profile" component={UserProfile} />
-        <Route exact path="/transfer-funds" component={TransferFund} />
+
+        <Route path="/confirm-registration" component={ConfirmRegistration} />
       </div>
 
       <Switch>
+        <SecuredRoute path="/password-reset" component={ResetPassword} />
+        <SecuredRoute exact path="/change-pin" component={ChangePin} />
+        <SecuredRoute exact path="/forgot-pin" component={ForgotPIn} />
+        <SecuredRoute
+          exact
+          path="/forgot-password"
+          component={ForgotPassword}
+        />
+        <SecuredRoute exact path="/dashboard" component={Dashboard} />
+        <SecuredRoute exact path="/profile" component={UserProfile} />
         <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
       </Switch>
     </Router>

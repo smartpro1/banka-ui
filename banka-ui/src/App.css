@@ -32,9 +32,14 @@ body {
 .signup,
 .transfer-fund,
 .reset-password,
-.signup {
+.signup,
+.confirm-registration {
   padding: 3rem;
   text-align: center;
   background: #add8e6;
   min-height: 85vh;
+}
+
+.confirm-registration {
+  position: relative;
 }
