@@ -33,7 +33,8 @@ body {
 .transfer-fund,
 .reset-password,
 .signup,
-.confirm-registration {
+.confirm-registration,
+.userProfile {
   padding: 3rem;
   text-align: center;
   background: #add8e6;

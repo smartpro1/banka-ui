@@ -1,0 +1,17 @@
+#profile-image {
+  width: 200px;
+
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid darkblue;
+}
+
+.userProfile-details {
+  text-align: left;
+  margin: 1.5rem auto;
+  width: 70%;
+}
+
+.userProfile-details p {
+  margin: 1rem 0;
+}
