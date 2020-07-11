@@ -2,12 +2,13 @@
   display: block;
 }
 
-#transfer-btn {
+.transfer-btn {
   background: coral;
   opacity: 0.8;
+  cursor: pointer;
 }
 
-#transfer-btn:hover {
+.transfer-btn:hover {
   opacity: 1;
 }
 
@@ -17,6 +18,25 @@
   margin-top: 1rem;
 }
 
-#amount {
+#amount,
+#charges {
   text-align: right;
+}
+
+.register-btn.toggle {
+  display: none;
+}
+
+#transfer-charge-label,
+.transfer-charge-input {
+  display: none;
+}
+
+.transfer-back {
+  color: darkblue;
+  cursor: pointer;
+}
+
+.transfer-back:hover {
+  color: coral;
 }

@@ -43,7 +43,8 @@
 }
 
 .register-btn,
-.transfer-btn {
+.transfer-btn,
+.send-money-btn {
   width: 90%;
   padding: 15px 0;
   border-radius: 100px;
@@ -54,6 +55,7 @@
   text-align: center;
   margin: 2rem 0;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .register-btn:hover {

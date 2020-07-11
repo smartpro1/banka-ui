@@ -124,3 +124,18 @@ export const resetPasswordAction = (password, history) => async (dispatch) => {
     });
   }
 };
+
+export const transferFundsAction = (transferDetails) => async (dispatch) => {
+  try {
+    await axios.post(`/api/v1/users/transfer-funds`, transferDetails);
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};

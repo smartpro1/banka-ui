@@ -50,6 +50,7 @@ function App() {
         <Route exact path="/user-guide" component={UserGuide} />
 
         <Route path="/confirm-registration" component={ConfirmRegistration} />
+        <Route exact path="/transfer-funds" component={TransferFund} />
       </div>
 
       <Switch>
@@ -63,7 +64,6 @@ function App() {
         />
         <SecuredRoute exact path="/dashboard" component={Dashboard} />
         <SecuredRoute exact path="/profile" component={UserProfile} />
-        <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
       </Switch>
     </Router>
   );

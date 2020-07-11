@@ -9,7 +9,7 @@ export default function StatusInfo({ status }) {
 
   if (status === "error" || status === "Error") {
     displayStatusMark = <div className="status-info-error-mark"></div>;
-    statusText = "Error";
+    statusText = "Oops, we're sorry there was an error!";
     statusTextClass += " error";
     statusInfoCircleClassName += " error";
   }
