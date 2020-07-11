@@ -39,6 +39,7 @@ class TransferFund extends Component {
     const { benfAcctNum, pin, description } = this.state;
     let amount = this.state.amount;
 
+    // remove commas from the amount input element caused by CurrencyFormat
     amount = amount.replace(/,/g, "");
     const transferDetails = {
       benfAcctNum,
@@ -126,22 +127,7 @@ class TransferFund extends Component {
               placeholder="enter beneficiary's account number"
               required
             />
-            {/*
-            <CurrencyFormat
-              type="text"
-              id="benfAcctNum"
-              name="benfAcctNum"
-              value={benfAcctNum}
-              onChange={this.handleOnChange}
-              minLength="10"
-              maxLength="10"
-              disabled={elementsState}
-              placeholder="enter beneficiary's account number"
-              required
-              thousandSeparator={true}
-              prefix={"#"}
-            />
-            */}
+
             {errors.benfAcctNum && (
               <span className="error-message">{errors.benfAcctNum}</span>
             )}

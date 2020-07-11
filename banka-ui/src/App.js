@@ -20,6 +20,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import UserGuide from "./components/UserGuide/UserGuide";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { ConfirmRegistration } from "./components/ConfirmRegistration/ConfirmRegistration";
+import DummyAccounts from "./components/DummyAccounts/DummyAccounts";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -51,6 +52,9 @@ function App() {
 
         <Route path="/confirm-registration" component={ConfirmRegistration} />
         <Route exact path="/transfer-funds" component={TransferFund} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/profile" component={UserProfile} />
+        <Route exact path="/dummy-accounts" component={DummyAccounts} />
       </div>
 
       <Switch>
@@ -62,8 +66,6 @@ function App() {
           path="/forgot-password"
           component={ForgotPassword}
         />
-        <SecuredRoute exact path="/dashboard" component={Dashboard} />
-        <SecuredRoute exact path="/profile" component={UserProfile} />
       </Switch>
     </Router>
   );
