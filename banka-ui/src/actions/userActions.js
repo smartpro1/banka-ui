@@ -35,8 +35,6 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     });
     history.push("/dashboard");
   } catch (err) {
-    console.log(err);
-    console.log(err.response.data);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
@@ -46,13 +44,17 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
 
 export const logoutAction = () => (dispatch) => {
   // When the person logs out, we remove jwt from localStorage as well as the header
+  console.log("logout called");
   localStorage.removeItem("jwtToken");
-  setJwtToken(false);
   dispatch({
     type: LOGIN,
     payload: {},
   });
   window.location.href = "/";
+};
+
+export const buttonAction = () => {
+  console.log("button action called");
 };
 
 export const changePinAction = (pinCredentials, history) => async (

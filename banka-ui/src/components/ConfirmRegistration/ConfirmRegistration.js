@@ -5,47 +5,41 @@ import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import StatusUpdate from "../StatusUpdate/StatusUpdate";
 
 export const ConfirmRegistration = (props) => {
-  //   const [isLoading, setIsLoading] = useState(true);
-  //   const [confirmRegistrationMessage, setConfirmRegistrationMessage] = useState(
-  //     ""
-  //   );
+  const [isLoading, setIsLoading] = useState(true);
+  const [status, setStatus] = useState("success");
+  const [description, setDescription] = useState("registration successful");
 
-  //   useEffect(() => {
-  //     getMessage();
-  //   }, []);
+  useEffect(() => {
+    getMessage();
+  }, []);
 
-  //   const getMessage = async () => {
-  //     console.log(props);
-  //     const token = props.location.search.substr(7);
-  //     console.log(token);
-  //     let message = "";
-  //     try {
-  //       message = await axios.post(
-  //         `/api/v1/users/confirm-registration?token=${token}`
-  //       );
-  //       console.log(message);
-  //       console.log(message.data);
+  const getMessage = async () => {
+    console.log(props);
+    const token = props.location.search.substr(7);
+    console.log(token);
+    let message = "";
+    try {
+      message = await axios.post(
+        `/api/v1/users/confirm-registration?token=${token}`
+      );
+      console.log(message);
+      console.log(message.data);
 
-  //       setIsLoading(false);
-  //       setConfirmRegistrationMessage(message.data);
-  //       // return message;
-  //     } catch (err) {
-  //       console.log("There was an error: " + err);
-  //     }
-  //   };
+      if (message.data !== "registration successful") {
+        setStatus("error");
+        setDescription(
+          "Oops!\n An error occurred, may be the server is down or you took more than 30mins to confirm registration."
+        );
+      }
+      // return message;
+    } catch (err) {
+      console.log("There was an error: " + err);
+    }
+  };
 
-  // displayMessage = "";
-  // let displayMessage = <LoadSpinner />;
-  // if (isLoading) {
-  //   displayMessage = confirmRegistrationMessage;
-  // }
-
-  const description =
-    "An error occurred, your registration wasn't confirmed, may be the server is down or the link has expired.";
-  const status = "error";
   return (
     <div className="confirm-registration">
-      <h1 style={{ textAlign: "center" }}>Loading...</h1>
+      <h1 style={{ textAlign: "center" }}>Confirm Registration</h1>
       <StatusUpdate description={description} status={status} />
     </div>
   );

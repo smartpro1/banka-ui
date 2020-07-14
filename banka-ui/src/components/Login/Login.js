@@ -56,6 +56,42 @@ class Login extends Component {
 
   render() {
     const { username, password, isLoading, errors } = this.state;
+    const { loginCredentials, isValidToken } = this.props.login;
+
+    if (loginCredentials && isValidToken) {
+      return (
+        <div className="login">
+          <div className="login-header">
+            <div className="login-notification">
+              <i className="fa fa-bell-o" aria-hidden="true"></i>
+              <p>notifications</p>
+            </div>
+            <div className="login-logo">
+              <h1>
+                Banka&nbsp;
+                <i
+                  className="fa fa-university logo-icon"
+                  aria-hidden="true"
+                ></i>
+              </h1>
+            </div>
+          </div>
+          <div className="logged-in">
+            <h3>Hi, Akeni Promise</h3>
+            <p className="logged-in-p">
+              Hope you are enjoying a seamless banking experience?
+            </p>
+            <p className="logged-in-p">
+              You currently do not have any notification, as soon as one comes
+              up we'll let you know!
+            </p>
+            <Link to="/dashboard" className="logged-in-btn">
+              {"<<"} Back to dashboard
+            </Link>
+          </div>
+        </div>
+      );
+    }
 
     let translate = "extra-container";
     let handIcon = (
@@ -187,9 +223,11 @@ class Login extends Component {
 Login.propTypes = {
   loginAction: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  login: state.login,
   errors: state.errors,
 });
 
