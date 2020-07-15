@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,6 +8,8 @@ import CurrencyFormat from "react-currency-format";
 
 import Logo from "../Logo/Logo";
 import TransferDetails from "./TransferDetails";
+import LoadSpinner from "../LoadSpinner/LoadSpinner";
+
 import "./Dashboard.css";
 
 class Dashboard extends Component {
@@ -16,11 +19,30 @@ class Dashboard extends Component {
     this.state = {
       dashboardClass: "dashboard",
       sidebarClass: "dashboard-sidebar",
+      accountNumber: "",
+      accountBalance: "",
+      isLoading: false,
     };
   }
 
   logout = () => {
     this.props.logoutAction();
+  };
+
+  componentDidMount = async () => {
+    this.setState({ isLoading: true });
+    const accountInfo = await this.getAccountDetails();
+
+    this.setState({
+      accountNumber: accountInfo.accountNumber,
+      accountBalance: accountInfo.accountBalance,
+    });
+    this.setState({ isLoading: false });
+  };
+
+  getAccountDetails = async () => {
+    const accountInfo = await axios.get(`/api/v1/users/get-account-info`);
+    return accountInfo.data;
   };
 
   // const [dashboardClass, setDashboardClass] = useState("dashboard");
@@ -37,6 +59,13 @@ class Dashboard extends Component {
   };
 
   render() {
+    const { accountNumber, accountBalance, isLoading } = this.state;
+    let isLoader = "";
+
+    if (isLoading) {
+      isLoader = <LoadSpinner />;
+    }
+
     const detailsArr = [
       {
         date: "Monday, June 15th 2020",
@@ -99,13 +128,14 @@ class Dashboard extends Component {
               </div>
             </div>
 
+            {isLoader}
             <div className="dashboard-account">
               <div className="dashboard-account-details">
-                <p>Savings - 0123456789</p>
+                <p>Savings - {accountNumber || "invalid"} </p>
                 <h4>
                   &#x20A6;
                   <CurrencyFormat
-                    value={1000005}
+                    value={accountBalance || "----"}
                     displayType={"text"}
                     thousandSeparator={true}
                   />

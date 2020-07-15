@@ -77,7 +77,9 @@ class Login extends Component {
             </div>
           </div>
           <div className="logged-in">
-            <h3>Hi, Akeni Promise</h3>
+            <h3>
+              Hi, <strong>{loginCredentials.fullname}</strong>
+            </h3>
             <p className="logged-in-p">
               Hope you are enjoying a seamless banking experience?
             </p>
