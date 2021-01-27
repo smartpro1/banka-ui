@@ -5,6 +5,7 @@ import CurrencyFormat from "react-currency-format";
 
 import "./TransferFund.css";
 import { transferFundsAction } from "../../actions/userActions";
+import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
 class TransferFund extends Component {
   constructor(props) {
@@ -47,9 +48,9 @@ class TransferFund extends Component {
       pin,
       description,
     };
-    console.log(transferDetails);
-    // const { transferFundsAction, history } = this.props;
-    // transferFundsAction(userDetails, history);
+   console.log(transferDetails);
+    const { transferFundsAction, history } = this.props;
+    transferFundsAction(transferDetails, history);
   };
 
   handleBackClick = () => {
@@ -76,7 +77,11 @@ class TransferFund extends Component {
       elementsState,
       btnText,
     } = this.state;
-
+    
+    let isLoader = "";
+    if (isLoading) {
+      isLoader = <LoadSpinner />;
+    }
     let transferChargeLabel = "transfer-charge-label";
     let transferChargeInput = "transfer-charge-input";
     let backIcon = "";
@@ -94,7 +99,7 @@ class TransferFund extends Component {
         </i>
       );
     }
-
+    
     return (
       <div className="transfer-fund">
         {backIcon}
@@ -111,6 +116,7 @@ class TransferFund extends Component {
             </h3>
           </div>
           <h2 id="signup-h2">Send Money</h2>
+          {isLoader}
           <div className="form-group">
             <label htmlFor="benfAcctNum" className="transfer-label extra">
               Beneficiary Acct Number

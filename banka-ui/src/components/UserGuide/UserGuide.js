@@ -64,7 +64,7 @@ export default function UserGuide() {
             and the customized alerts will show up everytime a transaction
             occurs on your account. The drawback to this is that I have a
             limited amount of money for sms that Twilio gave me, if everybody
-            uses it, it will be exhausted in no time.
+            used it, it will be exhausted in no time.
           </li>
 
           <li>

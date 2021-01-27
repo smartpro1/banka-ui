@@ -3,9 +3,9 @@ import CurrencyFormat from "react-currency-format";
 
 import "./TransferDetails.css";
 class TransferDetails extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const { date, description, amount, transactionType } = this.props;

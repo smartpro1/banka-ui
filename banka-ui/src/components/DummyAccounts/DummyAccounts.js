@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
+// import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import "./DummyAccounts.css";
+
 export default function DummyAccounts() {
   const copyTextToClipBoard = (event) => {
     const nextSibling = event.target.nextSibling;
@@ -20,6 +23,31 @@ export default function DummyAccounts() {
     document.execCommand("copy");
   };
 
+  const [accounts, setAccounts] = useState({});
+  // const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    getDummyAccounts();
+    let dummyAccounts = "";
+    async function getDummyAccounts() {
+      dummyAccounts = await axios.get(`/api/v1/users/get-dummy-accounts`);
+      setAccounts(dummyAccounts.data);
+    }
+  }, []);
+
+  let isLoader = "";
+  let val1 = "no dummy account found";
+  let val2 = val1;
+
+  // if (isLoading) {
+  //   isLoader = <LoadSpinner />;
+  // }
+
+  if (accounts.length > 0) {
+    val1 = accounts[0].accountNumber;
+    val2 = accounts[1].accountNumber;
+  }
+  // console.log(accounts[0].accountNumber);
   return (
     <div className="dummy-accounts">
       <div className="signup-logo">
@@ -37,7 +65,7 @@ export default function DummyAccounts() {
       <div className="clipboard-div">
         <input
           type="text"
-          value="0123456789"
+          value={val1}
           className="clip-board-input"
           id="input-text-1"
           readOnly
@@ -59,7 +87,7 @@ export default function DummyAccounts() {
       <div className="clipboard-div">
         <input
           type="text"
-          value="1012345999"
+          value={val2}
           className="clip-board-input"
           id="input-text-2"
           readOnly
@@ -73,6 +101,7 @@ export default function DummyAccounts() {
           id="clipboard-thumbs-up-2"
         ></i>
       </div>
+      {isLoader}
     </div>
   );
 }

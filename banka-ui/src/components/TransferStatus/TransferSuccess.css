@@ -1,0 +1,91 @@
+.transfer-success {
+  padding-top: 40px;
+  background: #98fb98;
+}
+
+.transfer-success .detail-div {
+  max-width: 90%;
+  /* background: #fff; */
+  min-height: 300px;
+  background: #fff;
+  margin: 50px auto;
+  border-radius: 10px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.transfer-success .white {
+  height: 70px;
+  width: 70px;
+  background: white;
+
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+}
+.transfer-success .green {
+  height: 62px;
+  width: 62px;
+  /* background: #00b140; */
+  background: #98fb98;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+}
+.transfer-success .circle {
+  border-radius: 100%;
+}
+
+.transfer-success h3 {
+  color: #00b140;
+}
+
+.trans-sup {
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.trans-amt {
+  color: #565d6b;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 0 15px;
+}
+
+.sent-to {
+  color: #b6b6b6;
+  font-size: 12px;
+}
+
+.trans-name,
+.trans-amt {
+  color: #565d6b;
+  font-size: 20px;
+}
+
+.trans-u {
+  border-bottom: 1px dashed #000;
+  text-decoration: none;
+  max-width: 90%;
+  display: inline-block;
+  margin: 10px auto;
+}
+
+.hr {
+  border-bottom: 1px dotted #565d6b;
+  text-decoration: none;
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+.ref-time {
+  color: #565d6b;
+}
+
+.trans-mark {
+  color: #fff;
+}

@@ -16,7 +16,7 @@ class UserProfile extends Component {
         </div>
         <h3 className="dummy-accounts-h3">Profile Page</h3>
         <div className="userProfile-img">
-          <img src={img1} alt="profile image" id="profile-image" />
+          <img src={img1} alt="profile" id="profile-image" />
         </div>
         <div className="userProfile-details">
           <p>

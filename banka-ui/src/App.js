@@ -21,6 +21,7 @@ import UserGuide from "./components/UserGuide/UserGuide";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { ConfirmRegistration } from "./components/ConfirmRegistration/ConfirmRegistration";
 import DummyAccounts from "./components/DummyAccounts/DummyAccounts";
+import TransferSuccess from "./components/TransferStatus/TransferSuccess";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -39,6 +40,7 @@ if (jwtToken) {
   }
 }
 
+
 function App() {
   return (
     <Router>
@@ -49,24 +51,25 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user-guide" component={UserGuide} />
-
+        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route path="/password-reset" component={ResetPassword} />
         <Route path="/confirm-registration" component={ConfirmRegistration} />
-        <Route exact path="/transfer-funds" component={TransferFund} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/profile" component={UserProfile} />
-        <Route exact path="/dummy-accounts" component={DummyAccounts} />
-      </div>
+        <Route exact path="/transfer-success" component={TransferSuccess} />
+        
 
-      <Switch>
-        <SecuredRoute path="/password-reset" component={ResetPassword} />
-        <SecuredRoute exact path="/change-pin" component={ChangePin} />
-        <SecuredRoute exact path="/forgot-pin" component={ForgotPIn} />
-        <SecuredRoute
-          exact
-          path="/forgot-password"
-          component={ForgotPassword}
-        />
-      </Switch>
+        <Switch>
+          <SecuredRoute exact path="/change-pin" component={ChangePin} />
+          <SecuredRoute exact path="/forgot-pin" component={ForgotPIn} />
+          <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
+          <SecuredRoute exact path="/dashboard" component={Dashboard} />
+          <SecuredRoute exact path="/profile" component={UserProfile} />
+          <SecuredRoute
+            exact
+            path="/dummy-accounts"
+            component={DummyAccounts}
+          />
+        </Switch>
+      </div>
     </Router>
   );
 }

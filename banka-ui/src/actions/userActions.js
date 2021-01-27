@@ -127,14 +127,17 @@ export const resetPasswordAction = (password, history) => async (dispatch) => {
   }
 };
 
-export const transferFundsAction = (transferDetails) => async (dispatch) => {
+export const transferFundsAction = (transferDetails, history) => async (dispatch) => {
   try {
+    console.log({transferDetails});
     await axios.post(`/api/v1/users/transfer-funds`, transferDetails);
     dispatch({
       type: GET_ERRORS,
       payload: {},
     });
+    history.push("/dashboard");
   } catch (err) {
+    console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
