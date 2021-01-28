@@ -44,6 +44,9 @@ class SignUp extends Component {
       else if (value.length > 2 && !/^\d+$/.test(value.substring(2))) {
         phoneNumberError.phoneNumber = "phone number must all be digits";
         this.setState({ errors: phoneNumberError });
+      }else if (value.length !== 11) {
+        phoneNumberError.phoneNumber = "phone number must be 11 digits";
+        this.setState({ errors: phoneNumberError });
       } else {
         this.setState({ errors: phoneNumberError });
       }

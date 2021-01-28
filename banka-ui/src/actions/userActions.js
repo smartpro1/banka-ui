@@ -135,7 +135,7 @@ export const transferFundsAction = (transferDetails, history) => async (dispatch
       type: GET_ERRORS,
       payload: {},
     });
-    history.push("/dashboard");
+    history.push("/transfer-success");
   } catch (err) {
     console.log(err);
     dispatch({

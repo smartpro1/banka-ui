@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+
 import "./TransferSuccess.css";
 
 class TransferSuccess extends Component {
@@ -25,7 +27,14 @@ class TransferSuccess extends Component {
                <p>Ref number: 736483929246</p>
               </div>
               </div>
-              
+              <div className="trans-btns-div">
+              <Link to="/transfer-funds" className="trans-btn perform">
+                Perform Another Transaction
+              </Link>
+              <Link to="/dashboard" className="trans-btn dashboard">
+                Back To Dashboard
+              </Link>
+              </div>
             </div>
         )
     }

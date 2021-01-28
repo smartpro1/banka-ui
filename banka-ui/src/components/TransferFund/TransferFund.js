@@ -24,7 +24,19 @@ class TransferFund extends Component {
   }
 
   handleOnChange = (event) => {
+    let  benfAcctNumError = {}; 
     const [name, value] = [event.target.name, event.target.value];
+    if (name === "benfAcctNum") {
+       if (value.length > 10) {
+        benfAcctNumError.benfAcctNum = "";
+        this.setState({ errors: benfAcctNumError });
+        return;
+       }
+       else {
+        benfAcctNumError.benfAcctNum = "account number must be 10 digits";
+        this.setState({ errors: benfAcctNumError });
+       } 
+    }
     this.setState({ [name]: value });
   };
 
@@ -122,7 +134,7 @@ class TransferFund extends Component {
               Beneficiary Acct Number
             </label>
             <input
-              type="text"
+              type="number"
               id="benfAcctNum"
               name="benfAcctNum"
               value={benfAcctNum}
@@ -133,7 +145,7 @@ class TransferFund extends Component {
               placeholder="enter beneficiary's account number"
               required
             />
-
+           
             {errors.benfAcctNum && (
               <span className="error-message">{errors.benfAcctNum}</span>
             )}
