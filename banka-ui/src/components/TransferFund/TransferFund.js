@@ -24,12 +24,17 @@ class TransferFund extends Component {
   }
 
   handleOnChange = (event) => {
-    let  benfAcctNumError = {}; 
+    let benfAcctNumError = {}; 
+    let pinError = {};
     const [name, value] = [event.target.name, event.target.value];
+
     if (name === "benfAcctNum") {
-       if (value.length > 10) {
+       if (value.length === 10) {
         benfAcctNumError.benfAcctNum = "";
         this.setState({ errors: benfAcctNumError });
+       }
+
+       else if (value.length > 10) {
         return;
        }
        else {
@@ -37,6 +42,19 @@ class TransferFund extends Component {
         this.setState({ errors: benfAcctNumError });
        } 
     }
+
+    if (name ==="pin") {
+      if (value.length < 4 ) {
+        pinError.pin = "pin must be between 4 to 8 digits";
+        this.setState({ errors: pinError });
+      } else if (value.length > 8) {
+        return;
+      } else {
+        pinError.pin = "";
+        this.setState({ errors: pinError });
+      }
+    }
+
     this.setState({ [name]: value });
   };
 
@@ -60,7 +78,6 @@ class TransferFund extends Component {
       pin,
       description,
     };
-   console.log(transferDetails);
     const { transferFundsAction, history } = this.props;
     transferFundsAction(transferDetails, history);
   };
@@ -160,7 +177,7 @@ class TransferFund extends Component {
               placeholder="enter amount"
               disabled={elementsState}
               thousandSeparator={true}
-              suffix={".00"}
+              // suffix={".00"}
               required
             />
             {errors.amount && (
@@ -196,14 +213,13 @@ class TransferFund extends Component {
               Pin{" "}
             </label>
             <input
-              type="password"
+              type="number"
+              className="trans-pin"
               id="pin"
               name="pin"
               value={pin}
               onChange={this.handleOnChange}
-              minLength="4"
-              maxLength="4"
-              placeholder="enter four digits transfer pin"
+              placeholder="enter four to eight digits transfer pin"
               disabled={elementsState}
               required
             />

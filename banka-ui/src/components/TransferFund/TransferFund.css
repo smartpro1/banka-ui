@@ -40,3 +40,9 @@
 .transfer-back:hover {
   color: coral;
 }
+
+.trans-pin {
+  -webkit-text-security: disc;
+  -moz-webkit-text-security: disc;
+  -moz-text-security: disc;
+}
