@@ -22,6 +22,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { ConfirmRegistration } from "./components/ConfirmRegistration/ConfirmRegistration";
 import DummyAccounts from "./components/DummyAccounts/DummyAccounts";
 import TransferSuccess from "./components/TransferStatus/TransferSuccess";
+import ConfirmSth from "./components/ConfirmRegistration/ConfirmSth";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -54,6 +55,7 @@ function App() {
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route path="/password-reset" component={ResetPassword} />
         <Route path="/confirm-registration" component={ConfirmRegistration} />
+        <Route path="/confirm-sth" component={ConfirmSth} />
         <Route exact path="/transfer-success" component={TransferSuccess} />
         
 

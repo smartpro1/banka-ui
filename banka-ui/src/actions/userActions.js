@@ -62,13 +62,14 @@ export const changePinAction = (pinCredentials, history) => async (
 ) => {
   try {
     await axios.post(`/api/v1/users/change-pin`, pinCredentials);
-    alert("A password reset mail has been sent to your email address");
-    history.push("/");
+    alert("Change pin successful");
+    history.push("/dashboard");
     dispatch({
       type: GET_ERRORS,
       payload: {},
     });
   } catch (err) {
+    console.log(err.response);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

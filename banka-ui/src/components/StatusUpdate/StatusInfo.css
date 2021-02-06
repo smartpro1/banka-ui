@@ -18,7 +18,7 @@
 .status-info-success-mark {
   width: 5px;
   height: 30px;
-  background: mediumseagreen;
+  background: #fff;
   position: absolute;
   top: 26%;
   left: 53%;
@@ -31,7 +31,7 @@
   position: absolute;
   width: 10px;
   height: 5px;
-  background: mediumseagreen;
+  background: #fff;
   bottom: 0px;
   right: 4px;
 }

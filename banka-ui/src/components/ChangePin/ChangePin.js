@@ -11,7 +11,7 @@ class ChangePin extends Component {
     super();
 
     this.state = {
-      pin: "",
+      currentPin: "",
       newPin: "",
       confirmNewPin: "",
       isLoading: false,
@@ -30,15 +30,50 @@ class ChangePin extends Component {
 
   handleOnChange = (event) => {
     const [name, value] = [event.target.name, event.target.value];
-    this.setState({ [name]: value });
+   
+    if (name ==="currentPin") {
+      let currentPinError = {};
+      if (value.length < 4 ) {
+        currentPinError.currentPin = "pin must be between 4 to 8 digits";
+        this.setState({ errors: currentPinError });
+      } else if (value.length > 8) {
+        return;
+      } else {
+        currentPinError.pin = "";
+        this.setState({ errors: currentPinError });
+      }
+    }
+
+    if (name ==="newPin") {
+      let newPinError = {};
+      if (value.length < 4 ) {
+        newPinError.newPin = "pin must be between 4 to 8 digits";
+        this.setState({ errors: newPinError });
+      } else if (value.length > 8) {
+        return;
+      } else {
+        newPinError.pin = "";
+        this.setState({ errors: newPinError });
+      }
+    }
 
     //  validation for confirm new pin
     if (name === "confirmNewPin" && value.length > 0) {
       let confirmNewPinError = {};
+      let newPinError = {};
       const { newPin } = this.state;
 
-      if (newPin.length < 4) {
-        confirmNewPinError.confirmNewPin =
+      if (value.length < 4 ) {
+        newPinError.newPin = "pin must be between 4 to 8 digits";
+        this.setState({ errors: newPinError });
+      }
+
+      if (value.length > 8) {
+        return;
+      }
+
+      if (newPin.length < 4 ) {
+          confirmNewPinError.confirmNewPin =
           "fill in  new pin field first which cannot be empty or less than four characters";
         this.setState({ errors: confirmNewPinError, confirmNewPin: "" });
         return;
@@ -51,16 +86,17 @@ class ChangePin extends Component {
         this.setState({ errors: confirmNewPinError });
       }
     }
+    this.setState({ [name]: value });
   };
 
   handleOnSubmit = (event) => {
     event.preventDefault();
     this.setState({ isLoading: true });
 
-    const { pin, newPin, confirmNewPin } = this.state;
+    const { currentPin, newPin, confirmNewPin } = this.state;
 
     const pinCredentials = {
-      pin,
+      currentPin,
       newPin,
       confirmNewPin,
     };
@@ -69,7 +105,7 @@ class ChangePin extends Component {
   };
 
   render() {
-    const { pin, newPin, confirmNewPin, isLoading, errors } = this.state;
+    const { currentPin, newPin, confirmNewPin, isLoading, errors } = this.state;
     let submitBtnClassName = "";
     let btnNotAllowSubmit = ""; // allows submit by default
 
@@ -94,6 +130,19 @@ class ChangePin extends Component {
     if (isLoading) {
       isLoader = <LoadSpinner />;
     }
+    
+    let displayErrorMessage = "";
+
+    if (errors.invalidCredentialException) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+          &nbsp;{errors.invalidCredentialException}
+        </div>
+      );
+    }
+    
 
     return (
       <div className="signup">
@@ -106,32 +155,30 @@ class ChangePin extends Component {
           </h3>
         </div>
         <h2 id="signup-h2" className="fgt-password">
-          Change Pin
+          Change Pin 
         </h2>
-        <form className="change-pin-form">
+        
+        {displayErrorMessage}
+        <form className="change-pin-form" onSubmit={this.handleOnSubmit}>
           <div className="signup-container">
             <input
-              className="signup-input"
-              type="password"
-              placeholder="enter your valid pin"
-              minLength="4"
-              maxLength="4"
-              name="pin"
+              className="signup-input trans-pin"
+              type="number"
+              placeholder="enter your current pin"
+              name="currentPin"
               disabled={isLoading}
               onChange={this.handleOnChange}
-              value={pin}
+              value={currentPin}
               required
             />
-            {errors.pin && <span className="error-message">{errors.pin}</span>}
+            {errors.currentPin && <span className="error-message">{errors.currentPin}</span>}
           </div>
 
           <div className="signup-container">
             <input
-              className="signup-input"
-              type="password"
+              className="signup-input trans-pin"
+              type="number"
               placeholder="enter new pin"
-              minLength="4"
-              maxLength="4"
               name="newPin"
               onChange={this.handleOnChange}
               disabled={isLoading}
@@ -145,11 +192,9 @@ class ChangePin extends Component {
 
           <div className="signup-container">
             <input
-              className="signup-input"
-              type="password"
+              className="signup-input trans-pin"
+              type="number"
               placeholder="confirm new pin"
-              minLength="4"
-              maxLength="4"
               name="confirmNewPin"
               value={confirmNewPin}
               disabled={isLoading}
@@ -162,6 +207,7 @@ class ChangePin extends Component {
           </div>
 
           {isLoader}
+          
         </form>
       </div>
     );
