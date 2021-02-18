@@ -19,9 +19,8 @@ class Dashboard extends Component {
     this.state = {
       dashboardClass: "dashboard",
       sidebarClass: "dashboard-sidebar",
-      accountNumber: "",
-      accountBalance: "",
       isLoading: false,
+      accountBalance: "",
     };
   }
 
@@ -34,7 +33,6 @@ class Dashboard extends Component {
     const accountInfo = await this.getAccountDetails();
 
     this.setState({
-      accountNumber: accountInfo.accountNumber,
       accountBalance: accountInfo.accountBalance,
     });
     this.setState({ isLoading: false });
@@ -59,12 +57,16 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { accountNumber, accountBalance, isLoading } = this.state;
+    const {accountBalance} = this.state;
+    const { isLoading } = this.state;
     let isLoader = "";
 
     if (isLoading) {
       isLoader = <LoadSpinner />;
     }
+
+    const {login} = this.props;
+    const {transferFund} = this.props;
 
     const detailsArr = [
       {
@@ -131,7 +133,7 @@ class Dashboard extends Component {
             {isLoader}
             <div className="dashboard-account">
               <div className="dashboard-account-details">
-                <p>Savings - {accountNumber || "invalid"} </p>
+                <p>Savings - {login.loginCredentials.acctNum || "invalid"} </p>
                 <h4>
                   &#x20A6;
                   <CurrencyFormat
@@ -205,11 +207,12 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   logoutAction: PropTypes.func.isRequired,
-  // login: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
 };
 
-// const mapStateToProps = (state) => ({
-//   login: state.login,
-// });
+const mapStateToProps = (state) => ({
+  login: state.login,
+  transferFund: state.transferFund.transferFund,
+});
 
-export default connect(null, { logoutAction })(Dashboard);
+export default connect(mapStateToProps, { logoutAction })(Dashboard);

@@ -96,6 +96,7 @@ class TransferFund extends Component {
   };
 
   render() {
+
     const {
       benfAcctNum,
       amount,
@@ -245,3 +246,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { transferFundsAction })(TransferFund);
+
+
+
+

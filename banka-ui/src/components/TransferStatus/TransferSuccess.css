@@ -86,6 +86,8 @@
 
 .ref-time {
   color: #565d6b;
+  text-align: left;
+  margin: 0 10px;
 }
 
 .trans-mark {

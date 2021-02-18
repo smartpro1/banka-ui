@@ -1,14 +1,18 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { GET_ERRORS, LOGIN } from "./types";
+import { GET_ERRORS, LOGIN, FULLNAME, TRANSFERFUND} from "./types";
 
 import { setJwtToken } from "../securityUtils/setJwtToken";
 
-export const signupAction = (userDetails, history) => async (dispatch) => {
+export const signupAction = (userDetails, history, fullname) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/signup`, userDetails);
-    alert("user successfully registered");
-    history.push("/");
+    dispatch({
+      type: FULLNAME,
+      payload: fullname,
+    });
+    history.push("/dashboard");
+    history.push("/reg-successful");
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -44,7 +48,6 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
 
 export const logoutAction = () => (dispatch) => {
   // When the person logs out, we remove jwt from localStorage as well as the header
-  console.log("logout called");
   localStorage.removeItem("jwtToken");
   dispatch({
     type: LOGIN,
@@ -62,8 +65,7 @@ export const changePinAction = (pinCredentials, history) => async (
 ) => {
   try {
     await axios.post(`/api/v1/users/change-pin`, pinCredentials);
-    alert("Change pin successful");
-    history.push("/dashboard");
+    history.push("/change-pin-success");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -130,18 +132,18 @@ export const resetPasswordAction = (password, history) => async (dispatch) => {
 
 export const transferFundsAction = (transferDetails, history) => async (dispatch) => {
   try {
-    console.log({transferDetails});
-    await axios.post(`/api/v1/users/transfer-funds`, transferDetails);
+    const res = await axios.post(`/api/v1/users/transfer-funds`, transferDetails);
     dispatch({
-      type: GET_ERRORS,
-      payload: {},
+      type: TRANSFERFUND,
+      payload: res.data,
     });
     history.push("/transfer-success");
   } catch (err) {
-    console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
     });
   }
 };
+
+

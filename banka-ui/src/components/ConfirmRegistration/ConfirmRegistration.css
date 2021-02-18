@@ -21,7 +21,7 @@
   background: coral;
   color: #fff;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto !important;
   opacity: 0.8;
   animation: flow 30s linear infinite;
   animation-play-state: paused;

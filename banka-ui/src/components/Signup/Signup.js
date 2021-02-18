@@ -95,7 +95,7 @@ class SignUp extends Component {
       confirmPassword,
     };
     const { signupAction, history } = this.props;
-    signupAction(userDetails, history);
+    signupAction(userDetails, history, userDetails.fullname);
   };
 
   componentWillReceiveProps = (nextProps) => {

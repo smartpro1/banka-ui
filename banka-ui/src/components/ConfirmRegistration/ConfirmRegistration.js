@@ -1,40 +1,37 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import {Link} from "react-router-dom";
+import { connect } from "react-redux";
+import SuccessMessage from "../SuccessMessage/SuccessMessage";
 
-// import LoadSpinner from "../LoadSpinner/LoadSpinner";
-import StatusUpdate from "../StatusUpdate/StatusUpdate";
+import "./ConfirmRegistration.css";
 
-export const ConfirmRegistration = (props) => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const [status, setStatus] = useState("success");
-  const [description, setDescription] = useState("registration successful");
+const ConfirmRegistration = (props) => {
+  console.log(props);
+    const {fullname} = props;
+    console.log(fullname);
+    const mesg = (
+        <div>
+        <h3 className="confirm-h3">Congratulations, <span className="info-change-pin">{fullname}</span> your  registration is now complete.</h3>
+        <p className="confirm-p">Please login and <span className="info-change-pin">change your default pin</span> for you to be fully activated!</p>
+        <p className="confirm-p">When you registered, a default pin was sent to your mail, please login and on the dashboard click on 
+            the hamburger menu and select change pin, enter your default pin and a new pin of your choice.</p>
+        </div>
+    );
+    return (
+        <div className="confirm-sth">
+           <h1 className="confirm-h1">Registration Complete</h1>
+           <SuccessMessage message={mesg}/>
+           <Link to="/" className="trans-btn got-it-btn">
+                Login
+              </Link>
+        </div>
+    );
+}
 
-  useEffect(() => {
-    getMessage();
-  }, []);
+  
+  const mapStateToProps = (state) => ({
+    fullname: state.fullname.fullname,
+  });
+  
+  export default connect(mapStateToProps, null)(ConfirmRegistration);
 
-  const getMessage = async () => {
-    const token = props.location.search.substr(7);
-    let message = "";
-    try {
-      message = await axios.post(
-        `/api/v1/users/confirm-registration?token=${token}`
-      );
-
-      if (message.data !== "registration successful") {
-        setStatus("error");
-        setDescription(
-          "Oops!\n An error occurred, may be the server is down or you took more than 30mins to confirm registration."
-        );
-      }
-      // return message;
-    } catch (err) {}
-  };
-
-  return (
-    <div className="confirm-registration">
-      <h1 style={{ textAlign: "center" }}>Confirm Registration</h1>
-      <StatusUpdate description={description} status={status} />
-    </div>
-  );
-};

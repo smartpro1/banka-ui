@@ -19,10 +19,11 @@ import ChangePin from "./components/ChangePin/ChangePin";
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserGuide from "./components/UserGuide/UserGuide";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
-import { ConfirmRegistration } from "./components/ConfirmRegistration/ConfirmRegistration";
+import { ConfirmReg } from "./components/ConfirmRegistration/ConfirmReg";
 import DummyAccounts from "./components/DummyAccounts/DummyAccounts";
 import TransferSuccess from "./components/TransferStatus/TransferSuccess";
-import ConfirmSth from "./components/ConfirmRegistration/ConfirmSth";
+import RegistrationSuccessful from "./components/ConfirmRegistration/RegistrationSuccessful";
+import ChangePinSuccessful from "./components/ConfirmRegistration/ChangePinSuccessful";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -54,17 +55,18 @@ function App() {
         <Route exact path="/user-guide" component={UserGuide} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route path="/password-reset" component={ResetPassword} />
-        <Route path="/confirm-registration" component={ConfirmRegistration} />
-        <Route path="/confirm-sth" component={ConfirmSth} />
-        <Route exact path="/transfer-success" component={TransferSuccess} />
+        <Route path="/confirm-registration" component={ConfirmReg} />
+        <Route path="/reg-successful" component={RegistrationSuccessful} />
+        {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
-
         <Switch>
           <SecuredRoute exact path="/change-pin" component={ChangePin} />
           <SecuredRoute exact path="/forgot-pin" component={ForgotPIn} />
           <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
           <SecuredRoute exact path="/dashboard" component={Dashboard} />
           <SecuredRoute exact path="/profile" component={UserProfile} />
+          <SecuredRoute exact path="/transfer-success" component={TransferSuccess} />
+          <SecuredRoute exact path="/change-pin-success" component={ChangePinSuccessful} />
           <SecuredRoute
             exact
             path="/dummy-accounts"
