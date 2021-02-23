@@ -56,6 +56,11 @@ class Dashboard extends Component {
       : this.setState({ sidebarClass: "dashboard-sidebar" });
   };
 
+  capitalize  = (string) => {
+    return string && string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
+
   render() {
     const {accountBalance} = this.state;
     const { isLoading } = this.state;
@@ -68,42 +73,23 @@ class Dashboard extends Component {
     const {login} = this.props;
     const {transferFund} = this.props;
 
-    const detailsArr = [
-      {
-        date: "Monday, June 15th 2020",
-        description: "Salary for April",
-        amount: 10000,
-        transactionType: "credit",
-      },
-      {
-        date: "Tuesday, June 16th 2020",
-        description: "Payment for data",
-        amount: 1000,
-        transactionType: "debit",
-      },
-      {
-        date: "Wednesday, July 1st 2020",
-        description: "Salary for June",
-        amount: 15000,
-        transactionType: "credit",
-      },
-      {
-        date: "Tuesday, June 15th 2020",
-        description: "Payment for Gotv",
-        amount: 2460,
-        transactionType: "debit",
-      },
-    ];
 
-    const result = detailsArr.map((detailArr) => (
-      <TransferDetails
-        key={detailArr.amount}
-        date={detailArr.date}
-        description={detailArr.description}
-        amount={detailArr.amount}
-        transactionType={detailArr.transactionType}
+    const transactions = login.loginCredentials.transactions;
+    
+    const res = transactions.map(trans =>{
+      
+      return(
+        <TransferDetails
+        key={trans.transactionId}
+        date={trans.created_At}
+        description={trans.description}
+        amount={trans.amount}
+        transactionType={trans.transactionType}
       />
-    ));
+    
+     )
+    });
+    
 
     return (
       <React.Fragment>
@@ -148,7 +134,7 @@ class Dashboard extends Component {
 
             <div className="chart"></div>
           </div>
-          {result}
+          {res}
         </div>
         <div className={this.state.sidebarClass}>
           <Logo className="dashboard-logo" />

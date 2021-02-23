@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { updateTransactionAction } from "../../actions/userActions";
+import { transferFundsAction } from "../../actions/userActions";
 
 import "./TransferSuccess.css";
 
@@ -9,6 +12,11 @@ import "./TransferSuccess.css";
 class TransferSuccess extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillUnmount = () => {
+    const {updateTransactionAction, transferFund} = this.props;
+    updateTransactionAction(transferFund.transactions);
   }
 
     render() {
@@ -42,19 +50,32 @@ class TransferSuccess extends Component {
               <Link to="/dashboard" className="trans-btn dashboard">
                 Back To Dashboard
               </Link>
+              
               </div>
             </div>
         )
     }
 }
 
-TransferSuccess.propTypes = {
-  updateAcctBalAction: PropTypes.func.isRequired,
+// TransferSuccess.propTypes = {
+//   updateTransactionAction: PropTypes.func.isRequired,
+// };
+
+// const mapStateToProps = (state) => ({
+//   login: state.login,
+//   transferFund: state.transferFund.transferFund,
+// });
+
+// export default connect(mapStateToProps, { logoutAction })(Dashboard);
+//export default TransferSuccess;
+
+// TransferSuccess.propTypes = {
+//   updateAcctBalAction: PropTypes.func.isRequired,
   
-};
+// };
 
 const mapStateToProps = (state) => ({
   transferFund: state.transferFund.transferFund,
 });
 
-export default connect(mapStateToProps, null)(TransferSuccess);
+export default connect(mapStateToProps, {updateTransactionAction})(TransferSuccess);

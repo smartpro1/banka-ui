@@ -24,6 +24,8 @@ import DummyAccounts from "./components/DummyAccounts/DummyAccounts";
 import TransferSuccess from "./components/TransferStatus/TransferSuccess";
 import RegistrationSuccessful from "./components/ConfirmRegistration/RegistrationSuccessful";
 import ChangePinSuccessful from "./components/ConfirmRegistration/ChangePinSuccessful";
+import ForgotPinSuccessful from "./components/ConfirmRegistration/ForgotPinSuccessful";
+import ForgotPasswdSuccessful from "./components/ConfirmRegistration/ForgotPasswdSuccessful";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -57,6 +59,8 @@ function App() {
         <Route path="/password-reset" component={ResetPassword} />
         <Route path="/confirm-registration" component={ConfirmReg} />
         <Route path="/reg-successful" component={RegistrationSuccessful} />
+        <Route path="/forgot-pin-successful" component={ForgotPinSuccessful}/>
+        <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
         <Switch>

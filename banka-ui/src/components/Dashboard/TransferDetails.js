@@ -10,7 +10,7 @@ class TransferDetails extends Component {
   render() {
     const { date, description, amount, transactionType } = this.props;
     let transactionClass = "transfer-amount ";
-    if (transactionType === "debit") transactionClass += "debit";
+    if (transactionType === "DEBIT") transactionClass += "debit";
     return (
       <div className="transfer-details">
         <div className="transfer-detail">

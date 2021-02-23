@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { GET_ERRORS, LOGIN, FULLNAME, TRANSFERFUND} from "./types";
+import { GET_ERRORS, LOGIN, FULLNAME, TRANSFERFUND, UPDATETRANSACTION} from "./types";
 
 import { setJwtToken } from "../securityUtils/setJwtToken";
 
@@ -11,7 +11,6 @@ export const signupAction = (userDetails, history, fullname) => async (dispatch)
       type: FULLNAME,
       payload: fullname,
     });
-    history.push("/dashboard");
     history.push("/reg-successful");
   } catch (err) {
     dispatch({
@@ -33,6 +32,7 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     setJwtToken(token);
     // decode token on React side
     const decodedJwtToken = jwtDecode(token);
+    console.log(decodedJwtToken);
     dispatch({
       type: LOGIN,
       payload: decodedJwtToken,
@@ -56,9 +56,9 @@ export const logoutAction = () => (dispatch) => {
   window.location.href = "/";
 };
 
-export const buttonAction = () => {
-  console.log("button action called");
-};
+// export const buttonAction = () => {
+  
+// };
 
 export const changePinAction = (pinCredentials, history) => async (
   dispatch
@@ -71,7 +71,6 @@ export const changePinAction = (pinCredentials, history) => async (
       payload: {},
     });
   } catch (err) {
-    console.log(err.response);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
@@ -82,8 +81,7 @@ export const changePinAction = (pinCredentials, history) => async (
 export const forgotPasswordAction = (email, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/forgot-password`, email);
-    alert("A password reset mail has been sent to your email address");
-    history.push("/");
+    history.push("/forgot-password-successful");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -99,8 +97,7 @@ export const forgotPasswordAction = (email, history) => async (dispatch) => {
 export const forgotPinAction = (email, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/forgot-password`, email);
-    alert("A password reset mail has been sent to your email address");
-    history.push("/");
+    history.push("/forgot-pin-successful");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -116,8 +113,7 @@ export const forgotPinAction = (email, history) => async (dispatch) => {
 export const resetPasswordAction = (password, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/reset-password`, password);
-    alert("password reset successful");
-    history.push("/");
+    history.push("/forgot-passwd-successful");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -139,11 +135,19 @@ export const transferFundsAction = (transferDetails, history) => async (dispatch
     });
     history.push("/transfer-success");
   } catch (err) {
+    console.log(err);
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data,
+      payload: err.res,
     });
   }
+};
+
+export const updateTransactionAction = (transaction) =>  (dispatch) => {
+    dispatch({
+      type: UPDATETRANSACTION,
+      payload: transaction,
+    });
 };
 
 
