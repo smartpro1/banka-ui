@@ -6,7 +6,7 @@ import { forgotPinAction } from "../../actions/userActions";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
 import "./ForgotPin.css";
-class ForgotPIn extends Component {
+class ForgotPin extends Component {
   constructor() {
     super();
 
@@ -90,7 +90,7 @@ class ForgotPIn extends Component {
   }
 }
 
-ForgotPIn.propTypes = {
+ForgotPin.propTypes = {
   forgotPinAction: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -99,4 +99,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { forgotPinAction })(ForgotPIn);
+export default connect(mapStateToProps, { forgotPinAction })(ForgotPin);

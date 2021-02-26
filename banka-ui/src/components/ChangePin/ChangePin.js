@@ -25,7 +25,9 @@ class ChangePin extends Component {
         errors: nextProps.errors,
         isLoading: false,
       });
+      
     }
+    
   };
 
   handleOnChange = (event) => {
@@ -104,6 +106,8 @@ class ChangePin extends Component {
     changePinAction(pinCredentials, history);
   };
 
+
+
   render() {
     const { currentPin, newPin, confirmNewPin, isLoading, errors } = this.state;
     let submitBtnClassName = "";
@@ -115,6 +119,12 @@ class ChangePin extends Component {
     } else {
       submitBtnClassName = "register-btn error";
       btnNotAllowSubmit = true;
+    }
+    
+    // If there is an error from the server, allow btn submit
+    if(errors.invalidCredentialException) {
+      submitBtnClassName = "register-btn";
+      btnNotAllowSubmit = false;
     }
 
     let isLoader = (

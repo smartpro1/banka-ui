@@ -14,7 +14,7 @@ import { LOGIN } from "./actions/types";
 import { logoutAction } from "./actions/userActions";
 import SecuredRoute from "./securityUtils/SecuredRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
-import ForgotPIn from "./components/ForgotPin/ForgotPin";
+import ForgotPin from "./components/ForgotPin/ForgotPin";
 import ChangePin from "./components/ChangePin/ChangePin";
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserGuide from "./components/UserGuide/UserGuide";
@@ -26,6 +26,7 @@ import RegistrationSuccessful from "./components/ConfirmRegistration/Registratio
 import ChangePinSuccessful from "./components/ConfirmRegistration/ChangePinSuccessful";
 import ForgotPinSuccessful from "./components/ConfirmRegistration/ForgotPinSuccessful";
 import ForgotPasswdSuccessful from "./components/ConfirmRegistration/ForgotPasswdSuccessful";
+import ResetPasswdSuccessful from "./components/ConfirmRegistration/ResetPasswdSuccessful";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -61,11 +62,14 @@ function App() {
         <Route path="/reg-successful" component={RegistrationSuccessful} />
         <Route path="/forgot-pin-successful" component={ForgotPinSuccessful}/>
         <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
+        <Route path="/reset-passwd-successful" component={ResetPasswdSuccessful} />
+        
+        
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
         <Switch>
           <SecuredRoute exact path="/change-pin" component={ChangePin} />
-          <SecuredRoute exact path="/forgot-pin" component={ForgotPIn} />
+          <SecuredRoute exact path="/forgot-pin" component={ForgotPin} />
           <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
           <SecuredRoute exact path="/dashboard" component={Dashboard} />
           <SecuredRoute exact path="/profile" component={UserProfile} />

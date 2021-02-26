@@ -46,3 +46,7 @@
   -moz-webkit-text-security: disc;
   -moz-text-security: disc;
 }
+
+.transfer-btn-hide {
+  display: none;
+}

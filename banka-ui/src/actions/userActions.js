@@ -32,7 +32,6 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     setJwtToken(token);
     // decode token on React side
     const decodedJwtToken = jwtDecode(token);
-    console.log(decodedJwtToken);
     dispatch({
       type: LOGIN,
       payload: decodedJwtToken,
@@ -81,7 +80,7 @@ export const changePinAction = (pinCredentials, history) => async (
 export const forgotPasswordAction = (email, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/forgot-password`, email);
-    history.push("/forgot-password-successful");
+    history.push("/forgot-passwd-successful");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -113,7 +112,7 @@ export const forgotPinAction = (email, history) => async (dispatch) => {
 export const resetPasswordAction = (password, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/reset-password`, password);
-    history.push("/forgot-passwd-successful");
+    history.push("/reset-passwd-successful");
     dispatch({
       type: GET_ERRORS,
       payload: {},
@@ -135,10 +134,9 @@ export const transferFundsAction = (transferDetails, history) => async (dispatch
     });
     history.push("/transfer-success");
   } catch (err) {
-    console.log(err);
     dispatch({
       type: GET_ERRORS,
-      payload: err.res,
+      payload: err.response.data,
     });
   }
 };

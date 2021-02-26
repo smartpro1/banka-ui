@@ -146,7 +146,7 @@ class Dashboard extends Component {
               </Link>
             </li>
             <li>
-              <Link to="airtime-bill-payment">
+              <Link to="" onClick={ (event) => event.preventDefault() } title="not implemented yet">
                 <i className="fa fa-money" aria-hidden="true"></i>
                 &nbsp; Airtime and Bill Payment
               </Link>
@@ -155,6 +155,11 @@ class Dashboard extends Component {
               <Link to="change-pin">
                 <i className="fa fa-key" aria-hidden="true"></i> &nbsp;Change
                 Pin
+              </Link>
+            </li>
+            <li>
+              <Link to="forgot-pin">
+                <i className="fa fa-lock" aria-hidden="true"></i> &nbsp;Forgot Pin
               </Link>
             </li>
             <li>
@@ -172,7 +177,7 @@ class Dashboard extends Component {
             </li>
 
             <li>
-              <Link to="/shop-product">
+              <Link to="/" onClick={ (event) => event.preventDefault() } title="not implemented yet">
                 <i className="fa fa-credit-card" aria-hidden="true"></i>{" "}
                 &nbsp;Shop With Card
               </Link>

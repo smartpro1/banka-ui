@@ -96,7 +96,6 @@ class TransferFund extends Component {
   };
 
   render() {
-
     const {
       benfAcctNum,
       amount,
@@ -107,6 +106,19 @@ class TransferFund extends Component {
       elementsState,
       btnText,
     } = this.state;
+
+    
+    let displayErrorMessage = "";
+
+    if (errors.invalidCredentialException) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+          &nbsp;{errors.invalidCredentialException}
+        </div>
+      );
+    }
     
     let isLoader = "";
     if (isLoading) {
@@ -129,7 +141,11 @@ class TransferFund extends Component {
         </i>
       );
     }
-    
+    let transferBtn = "transfer-btn"
+    if (isLoading) {
+         transferBtn += "-hide";
+       }
+            
     return (
       <div className="transfer-fund">
         {backIcon}
@@ -147,6 +163,7 @@ class TransferFund extends Component {
           </div>
           <h2 id="signup-h2">Send Money</h2>
           {isLoader}
+          {displayErrorMessage}
           <div className="form-group">
             <label htmlFor="benfAcctNum" className="transfer-label extra">
               Beneficiary Acct Number
@@ -226,8 +243,8 @@ class TransferFund extends Component {
             />
             {errors.pin && <span className="error-message">{errors.pin}</span>}
           </div>
-
-          <button type="submit" className="transfer-btn">
+          
+          <button type="submit" className={transferBtn}>
             {btnText}
           </button>
         </form>

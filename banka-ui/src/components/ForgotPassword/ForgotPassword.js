@@ -41,9 +41,22 @@ class ForgotPassword extends Component {
     forgotPasswordAction(userEmail, history);
   };
 
+  
+
   render() {
     const { email, isLoading, errors } = this.state;
-    console.log(errors);
+    let displayErrorMessage = "";
+
+    if (errors.EmailSendingException) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+          &nbsp;{errors.EmailSendingException}
+        </div>
+      );
+    }
+
     let isLoader = (
       <button type="submit" className="register-btn">
         Submit
@@ -67,6 +80,7 @@ class ForgotPassword extends Component {
         <h2 id="signup-h2" className="fgt-password">
           Reset Password
         </h2>
+        {displayErrorMessage}
         <form className="forgot-password-form" onSubmit={this.handleOnSubmit}>
           <div className="signup-container">
             <input
