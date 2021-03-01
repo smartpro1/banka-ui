@@ -37,6 +37,7 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
       payload: decodedJwtToken,
     });
     history.push("/dashboard");
+    inactiveSessionTimeout();
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -147,5 +148,32 @@ export const updateTransactionAction = (transaction) =>  (dispatch) => {
       payload: transaction,
     });
 };
+
+export const inactiveSessionTimeout = () => {
+
+ if(!localStorage.getItem("jwtToken")) {
+    return;
+ }
+
+let time = 120;
+
+const timer = setInterval(() => {
+     --time;
+    if (time == 0) {
+        clearInterval(timer);
+        localStorage.removeItem("jwtToken");
+        window.location.href = "/session-timeout";
+    }
+   
+}, 1000);
+
+const resetCountdown = () => {
+  time = 120;
+}
+window.addEventListener('mousemove', resetCountdown);
+window.addEventListener('mousedown', resetCountdown);
+window.addEventListener('keypress', resetCountdown);
+window.addEventListener('touchmove', resetCountdown);
+}
 
 

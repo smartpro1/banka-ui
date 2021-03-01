@@ -1,0 +1,46 @@
+.session-h3 {
+  background: #ebebeb;
+  color: #474646;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.session-div {
+  width: 90%;
+  margin: 20px auto;
+  border: 1px solid black;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
+
+.session-mesg {
+  background: #fff;
+}
+
+.session-info,
+.session-btn {
+  background: #09a982;
+  color: #fff;
+}
+
+.session-info {
+  font-size: 24px;
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
+.session-btn {
+  width: 80px;
+  display: block;
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}

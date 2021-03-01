@@ -27,6 +27,10 @@ import ChangePinSuccessful from "./components/ConfirmRegistration/ChangePinSucce
 import ForgotPinSuccessful from "./components/ConfirmRegistration/ForgotPinSuccessful";
 import ForgotPasswdSuccessful from "./components/ConfirmRegistration/ForgotPasswdSuccessful";
 import ResetPasswdSuccessful from "./components/ConfirmRegistration/ResetPasswdSuccessful";
+import {SessionTimeOut} from "./components/Session/SessionTimeout";
+
+import {inactiveSessionTimeout} from "./actions/userActions";
+
 
 const jwtToken = localStorage.jwtToken;
 
@@ -45,6 +49,7 @@ if (jwtToken) {
   }
 }
 
+inactiveSessionTimeout();
 
 function App() {
   return (
@@ -63,7 +68,7 @@ function App() {
         <Route path="/forgot-pin-successful" component={ForgotPinSuccessful}/>
         <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
         <Route path="/reset-passwd-successful" component={ResetPasswdSuccessful} />
-        
+        <Route path="/session-timeout" component={SessionTimeOut} /> 
         
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
