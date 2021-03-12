@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // import LoadSpinner from "../LoadSpinner/LoadSpinner";
-import StatusUpdate from "../StatusUpdate/StatusUpdate";
+// import StatusUpdate from "../StatusUpdate/StatusUpdate";
 import ConfirmRegistration from "./ConfirmRegistration";
 
 export const ConfirmReg = (props) => {

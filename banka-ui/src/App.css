@@ -29,6 +29,10 @@ body {
   position: relative;
 }
 
+.admin-app {
+  position: static;
+}
+
 .signup,
 .transfer-fund,
 .reset-password,

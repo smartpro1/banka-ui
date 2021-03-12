@@ -56,9 +56,9 @@ class Dashboard extends Component {
       : this.setState({ sidebarClass: "dashboard-sidebar" });
   };
 
-  capitalize  = (string) => {
-    return string && string[0].toUpperCase() + string.slice(1).toLowerCase();
-}
+//   capitalize  = (string) => {
+//     return string && string[0].toUpperCase() + string.slice(1).toLowerCase();
+// }
 
 
   render() {
@@ -71,7 +71,7 @@ class Dashboard extends Component {
     }
 
     const {login} = this.props;
-    const {transferFund} = this.props;
+   // const {transferFund} = this.props;
 
 
     const transactions = login.loginCredentials.transactions;

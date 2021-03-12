@@ -13,7 +13,7 @@ export default function UserGuide() {
       <h2>Documentation</h2>
       <div className="user-guide-short">
         <h3>Summary</h3>
-        <p class="user-guide-summary">
+        <p className="user-guide-summary">
           TLDR;
           <br />
           There is a detailed description of how to use this app down the page

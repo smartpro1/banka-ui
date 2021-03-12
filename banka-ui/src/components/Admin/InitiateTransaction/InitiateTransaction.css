@@ -1,0 +1,22 @@
+.init-transc {
+  background: #eeeeef;
+}
+
+.init-transc-form {
+  width: 63%;
+  background: gainsboro;
+  margin: 0 auto;
+  border: 1px solid #f7f7f7;
+  margin-top: 40px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#admin-transc-label {
+  margin-left: 4rem;
+}
+
+#admin-transc-btn {
+  background: dodgerblue;
+}

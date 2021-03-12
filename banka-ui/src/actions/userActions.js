@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { GET_ERRORS, LOGIN, FULLNAME, TRANSFERFUND, UPDATETRANSACTION} from "./types";
+import { GET_ERRORS, LOGIN, FULLNAME, TRANSFERFUND, UPDATETRANSACTION } from "./types";
 
 import { setJwtToken } from "../securityUtils/setJwtToken";
 
@@ -57,7 +57,7 @@ export const logoutAction = () => (dispatch) => {
 };
 
 // export const buttonAction = () => {
-  
+
 // };
 
 export const changePinAction = (pinCredentials, history) => async (
@@ -142,38 +142,40 @@ export const transferFundsAction = (transferDetails, history) => async (dispatch
   }
 };
 
-export const updateTransactionAction = (transaction) =>  (dispatch) => {
-    dispatch({
-      type: UPDATETRANSACTION,
-      payload: transaction,
-    });
+export const updateTransactionAction = (transaction) => (dispatch) => {
+  dispatch({
+    type: UPDATETRANSACTION,
+    payload: transaction,
+  });
 };
 
 export const inactiveSessionTimeout = () => {
 
- if(!localStorage.getItem("jwtToken")) {
+  if (!localStorage.getItem("jwtToken")) {
     return;
- }
+  }
 
-let time = 120;
+  let time = 120;
 
-const timer = setInterval(() => {
-     --time;
-    if (time == 0) {
-        clearInterval(timer);
-        localStorage.removeItem("jwtToken");
-        window.location.href = "/session-timeout";
+  const timer = setInterval(() => {
+    time--;
+    if (time === 0) {
+      clearInterval(timer);
+      localStorage.removeItem("jwtToken");
+      window.location.href = "/session-timeout";
     }
-   
-}, 1000);
 
-const resetCountdown = () => {
-  time = 120;
-}
-window.addEventListener('mousemove', resetCountdown);
-window.addEventListener('mousedown', resetCountdown);
-window.addEventListener('keypress', resetCountdown);
-window.addEventListener('touchmove', resetCountdown);
+  }, 1000);
+
+  const resetCountdown = () => {
+    time = 120;
+  }
+  window.addEventListener('mousemove', resetCountdown);
+  window.addEventListener('mousedown', resetCountdown);
+  window.addEventListener('keypress', resetCountdown);
+  window.addEventListener('touchmove', resetCountdown);
+  window.addEventListener('scroll', resetCountdown);
+  window.addEventListener('resize', resetCountdown);
 }
 
 

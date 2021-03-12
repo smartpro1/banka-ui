@@ -26,11 +26,16 @@ import RegistrationSuccessful from "./components/ConfirmRegistration/Registratio
 import ChangePinSuccessful from "./components/ConfirmRegistration/ChangePinSuccessful";
 import ForgotPinSuccessful from "./components/ConfirmRegistration/ForgotPinSuccessful";
 import ForgotPasswdSuccessful from "./components/ConfirmRegistration/ForgotPasswdSuccessful";
+import Error404 from "./components/Error404/Error404";
 import ResetPasswdSuccessful from "./components/ConfirmRegistration/ResetPasswdSuccessful";
 import {SessionTimeOut} from "./components/Session/SessionTimeout";
+import Withdrawal from "./components/Admin/Withdrawal/Withdrawal";
+import Deposit from "./components/Admin/Deposit/Deposit";
+
 
 import {inactiveSessionTimeout} from "./actions/userActions";
-
+//import Sidebar from "./components/Admin/Layout/Sidebar/Sidebar";
+import AdminDashboard from "./components/Admin/Dashboard/Dashboard";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -52,12 +57,31 @@ if (jwtToken) {
 inactiveSessionTimeout();
 
 function App() {
+  let appClass = "App";
+  const pathname = window.location.pathname.substr(1);
+  const adminPaths = ['admin-dashboard', 'deposit', 'withdrawal', 'operation', 'transaction', 'admin-sidebar'];
+  const isAdminPath = adminPaths.includes(pathname);
+  // console.log(pathname);
+  // console.log(isAdminPath);
+  
+  /**
+   * The admin urls will be large screen only, this helps us to break out of the default small screen
+   * for other urls
+   */
+  if (isAdminPath) {
+      appClass+=" admin-app";
+      document.body.style.backgroundImage = "";
+  }
+  
   return (
     <Router>
-      <div className="App">
+      <div className={appClass}>
         {
           // public Routes
         }
+        
+        <Switch>
+       {/* <Route exact path="/" component={Login} /> */}
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user-guide" component={UserGuide} />
@@ -68,11 +92,14 @@ function App() {
         <Route path="/forgot-pin-successful" component={ForgotPinSuccessful}/>
         <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
         <Route path="/reset-passwd-successful" component={ResetPasswdSuccessful} />
-        <Route path="/session-timeout" component={SessionTimeOut} /> 
-        
+        <Route exact path="/session-timeout" component={SessionTimeOut} /> 
+        {/*<Route exact path="/admin-sidebar" component={Sidebar} /> */}
+        <Route exact path="/admin-dashboard" component={AdminDashboard} />
+        <Route exact path="/withdrawal" component={Withdrawal} />
+        <Route exact path="/deposit" component={Deposit} />
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
-        <Switch>
+        
           <SecuredRoute exact path="/change-pin" component={ChangePin} />
           <SecuredRoute exact path="/forgot-pin" component={ForgotPin} />
           <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
@@ -85,6 +112,7 @@ function App() {
             path="/dummy-accounts"
             component={DummyAccounts}
           />
+          <Route component={Error404} />
         </Switch>
       </div>
     </Router>

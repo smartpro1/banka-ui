@@ -1,0 +1,21 @@
+.admin-dashboard {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  min-height: 110vh;
+}
+
+/* .admin-dashboard-sidebar {
+  flex-basis: 20%;
+  min-height: 100%;
+} */
+
+.admin-main-dashboard {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #eeeeef;
+}
