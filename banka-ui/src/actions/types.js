@@ -4,3 +4,8 @@ export const LOGIN = "LOGIN";
 export const FULLNAME = "FULLNAME";
 export const TRANSFERFUND = "TRANSFERFUND";
 export const UPDATETRANSACTION = "UPDATETRANSACTION";
+
+// Admin actions
+export const WITHDRAWAL = "WITHDRAWAL";
+export const DEPOSIT = "DEPOSIT";
+export const OPERATION = "OPERATION";

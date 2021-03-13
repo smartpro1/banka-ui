@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import CurrencyFormat from "react-currency-format";
 
+import {withdrawalAction, depositAction} from "../../../actions/adminActions";
+
 import './InitiateTransaction.css';
 
 class InitiateTransaction extends Component {
@@ -12,9 +14,11 @@ class InitiateTransaction extends Component {
     this.state = {
       acctNum: "",
       amount: "",
+      depositor: "",
       pin: "",
       isLoading: false,
       errors: {},
+      response: {}
     };
   }
   
@@ -68,7 +72,12 @@ class InitiateTransaction extends Component {
       amount,
       pin,
     };
-    console.log(transferDetails);
+    const {withdrawalAction} = this.props;
+
+    withdrawalAction(transferDetails);
+    // console.log(response);
+    // this.setState({response:response});
+    // console.log(this.state.response);
     //const { transferFundsAction, history } = this.props;
     // transferFundsAction(transferDetails, history);
   };
@@ -88,6 +97,7 @@ class InitiateTransaction extends Component {
       acctNum,
       amount,
       pin,
+      depositor,
      // isLoading,
       errors,
      
@@ -116,12 +126,12 @@ class InitiateTransaction extends Component {
     // if (isLoading) {
     //      transferBtn += "-hide";
     //    }
-            
+
     return (
       <div className="init-transc">
         <form className="init-transc-form" onSubmit={this.handleOnSubmit}>
-          <div className="signup-logo">
-          </div>
+          {/*<(div className="signup-logo">
+           </div>*/}
           <h2 id="signup-h2">{title} Fund</h2>
           {/*isLoader*/}
           {displayErrorMessage}
@@ -163,6 +173,22 @@ class InitiateTransaction extends Component {
               <span className="error-message">{errors.amount}</span>
             )*/}
             
+            {title === "Deposit" &&
+              (<React.Fragment><label htmlFor="depositor" className="transfer-label extra" id="admin-transc-label">
+                Depositor{" "}
+              </label>
+              <input
+                type="text"
+                name="depositor"
+                value={depositor}
+                onChange={this.handleOnChange}
+                placeholder="enter depositor name"
+              // disabled={elementsState}
+                required
+              />
+            {/*errors.pin && <span className="error-message">{errors.pin}</span>*/}
+            </React.Fragment> )}    
+         
             
             <label htmlFor="pin" className="transfer-label extra" id="admin-transc-label">
               Pin{" "}
@@ -191,15 +217,16 @@ class InitiateTransaction extends Component {
 }
 
 InitiateTransaction.propTypes = {
- // transferFundsAction: PropTypes.func.isRequired,
- // errors: PropTypes.object.isRequired,
+ withdrawalAction: PropTypes.func.isRequired,
+ depositAction: PropTypes.func.isRequired,
+ errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, null)(InitiateTransaction);
+export default connect(mapStateToProps, {withdrawalAction, depositAction})(InitiateTransaction);
 
 
 

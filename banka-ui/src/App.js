@@ -31,6 +31,7 @@ import ResetPasswdSuccessful from "./components/ConfirmRegistration/ResetPasswdS
 import {SessionTimeOut} from "./components/Session/SessionTimeout";
 import Withdrawal from "./components/Admin/Withdrawal/Withdrawal";
 import Deposit from "./components/Admin/Deposit/Deposit";
+import Operation from  "./components/Admin/Operation/Operation";
 
 
 import {inactiveSessionTimeout} from "./actions/userActions";
@@ -97,6 +98,7 @@ function App() {
         <Route exact path="/admin-dashboard" component={AdminDashboard} />
         <Route exact path="/withdrawal" component={Withdrawal} />
         <Route exact path="/deposit" component={Deposit} />
+        <Route exact path="/operation" component={Operation} />
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
         
         

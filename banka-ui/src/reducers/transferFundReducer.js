@@ -1,4 +1,4 @@
-import { TRANSFERFUND, UPDATEACCTBAL } from "../actions/types";
+import { TRANSFERFUND} from "../actions/types";
 
 const initialState = {
   transferFund: {}
