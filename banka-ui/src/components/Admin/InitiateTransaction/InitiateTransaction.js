@@ -28,7 +28,7 @@ class InitiateTransaction extends Component {
     let pinError = {};
     const [name, value] = [event.target.name, event.target.value];
 
-    if (name === "benfAcctNum") {
+    if (name === "acctNum") {
        if (value.length === 10) {
         acctNumError.acctNum = "";
         this.setState({ errors: acctNumError });
@@ -136,12 +136,12 @@ class InitiateTransaction extends Component {
           {/*isLoader*/}
           {displayErrorMessage}
           <div className="form-group">
-            <label htmlFor="benfAcctNum" className="transfer-label extra" id="admin-transc-label">
+            <label htmlFor="acctNum" className="transfer-label extra" id="admin-transc-label">
               Acct Number
             </label>
             <input
               type="number"
-              id="benfAcctNum"
+              id="acctNum"
               name="acctNum"
               value={acctNum}
               onChange={this.handleOnChange}
@@ -152,9 +152,9 @@ class InitiateTransaction extends Component {
               required
             />
            
-            {/*errors.benfAcctNum && (
-              <span className="error-message">{errors.benfAcctNum}</span>
-            )*/}
+            {errors.acctNum && (
+              <span className="error-message">{errors.acctNum}</span>
+            )}
             <label htmlFor="amount" className="transfer-label extra" id="admin-transc-label">
               Amount(naira)
             </label>
@@ -169,9 +169,9 @@ class InitiateTransaction extends Component {
               // suffix={".00"}
               required
             />
-            {/*errors.amount && (
+            {errors.amount && (
               <span className="error-message">{errors.amount}</span>
-            )*/}
+            )}
             
             {title === "Deposit" &&
               (<React.Fragment><label htmlFor="depositor" className="transfer-label extra" id="admin-transc-label">
@@ -186,7 +186,6 @@ class InitiateTransaction extends Component {
               // disabled={elementsState}
                 required
               />
-            {/*errors.pin && <span className="error-message">{errors.pin}</span>*/}
             </React.Fragment> )}    
          
             
@@ -204,7 +203,7 @@ class InitiateTransaction extends Component {
              // disabled={elementsState}
               required
             />
-            {/*errors.pin && <span className="error-message">{errors.pin}</span>*/}
+            {errors.pin && <span className="error-message">{errors.pin}</span>}
           </div>
           
           <button type="submit" className="transfer-btn" id="admin-transc-btn">

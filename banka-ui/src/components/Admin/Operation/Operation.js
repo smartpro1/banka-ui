@@ -23,7 +23,7 @@ class Operation extends Component {
         let pinError = {};
         const [name, value] = [event.target.name, event.target.value];
 
-        if (name === "benfAcctNum") {
+        if (name === "acctNum") {
            if (value.length === 10) {
             acctNumError.acctNum = "";
             this.setState({ errors: acctNumError });
@@ -57,18 +57,11 @@ class Operation extends Component {
         event.preventDefault();
         const { acctNum, pin, status} = this.state;
         const adminResponse = window.confirm(`Are you sure you want to set this user's status to ${status}`)
-        if (adminResponse) {
-           console.log("yes");
+        if (!adminResponse) {
            return;
-        } else {
-            console.log("no");
-            return;
         }
-    
         // this.setState({ isLoading: true });
        
-    
-        // remove commas from the amount input element caused by CurrencyFormat
         const transferDetails = {
           acctNum,
           status,
@@ -76,8 +69,8 @@ class Operation extends Component {
          
         };
         const {withdrawalAction} = this.props;
-    
-        withdrawalAction(transferDetails);
+        console.log(transferDetails);
+       // withdrawalAction(transferDetails);
         // console.log(response);
         // this.setState({response:response});
         // console.log(this.state.response);
@@ -128,13 +121,19 @@ class Operation extends Component {
                                 placeholder="enter account number"
                                 required
                             />
-                            <label htmlFor="benfAcctNum" className="transfer-label extra" id="admin-transc-label">
+                            {errors.acctNum && (
+                              <span className="error-message">{errors.acctNum}</span>
+                            )}
+
+                            <label htmlFor="selectOps" className="transfer-label extra" id="admin-transc-label">
                                 Select Operation
                             </label>
                             <select 
                               name="status" value={status}  
                               onChange={this.handleOnChange} 
-                              className="admin-select" required>
+                              className="admin-select"
+                              id="selectOps"
+                               required>
                               <option value="FROZEN">FROZEN</option>
                               <option value="SUSPENDED">SUSPENDED</option>
                               <option value="DEACTIVATED">DEACTIVATED</option>
@@ -156,7 +155,7 @@ class Operation extends Component {
                             // disabled={elementsState}
                             required
                             />
-                            {/*errors.pin && <span className="error-message">{errors.pin}</span>*/}
+                            {errors.pin && <span className="error-message">{errors.pin}</span>}
                         
                             </div>
                             <button type="submit" className="transfer-btn" id="admin-transc-btn">
