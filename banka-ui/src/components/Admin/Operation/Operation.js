@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import Navbar from '../Layout/Navbar/Navbar';
 import "./Operation.css";
+import LoadSpinner from "../../../components/LoadSpinner/LoadSpinner";
+import {operationAction} from "../../../actions/adminActions";
 
 class Operation extends Component {
 
@@ -12,8 +16,9 @@ class Operation extends Component {
         this.state = {
           acctNum: "",
           pin: "",
-          status: "DEACTIVATED",
+          status: "",
           errors: {},
+          isLoading: false
         };
       }
       
@@ -60,22 +65,17 @@ class Operation extends Component {
         if (!adminResponse) {
            return;
         }
-        // this.setState({ isLoading: true });
+        this.setState({ isLoading: true });
        
-        const transferDetails = {
+        const operationDetails = {
           acctNum,
           status,
           pin,
          
         };
-        const {withdrawalAction} = this.props;
-        console.log(transferDetails);
-       // withdrawalAction(transferDetails);
-        // console.log(response);
-        // this.setState({response:response});
-        // console.log(this.state.response);
-        //const { transferFundsAction, history } = this.props;
-        // transferFundsAction(transferDetails, history);
+        const {operationAction} = this.props;
+       operationAction(operationDetails);
+        
       };
     
       componentWillReceiveProps = (nextProps) => {
@@ -92,19 +92,42 @@ class Operation extends Component {
             acctNum,
             pin,
             status,
-           // isLoading,
+           isLoading,
             errors,
            
           } = this.state;
+
+          let displayErrorMessage = "";
+
+          if (errors.invalidCredentialException) {
+            displayErrorMessage = (
+              <div className="login-err-mesg">
+                {" "}
+                <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+                &nbsp;{errors.invalidCredentialException}
+              </div>
+            );
+          }
+          
+          let opsSubmitBtn = "transfer-btn";
+          let isLoader = "";
+          if (isLoading) {
+            isLoader = <LoadSpinner />;
+            opsSubmitBtn += " hide-ops";
+          }
+
         return(
+          
             <div className="admin-dashboard">
+            {isLoader}
                 <Sidebar className="admin-dashboard-sidebar"/>
                 <div className="admin-main-dashboard">
                     <Navbar/>
                     <div className="init-transc">
                         <form className="init-transc-form" onSubmit={this.handleOnSubmit}>
+                            {isLoader}
                             <h2 id="signup-h2">Operation</h2>
-                            {/*isLoader*/}
+                            {displayErrorMessage}
                             <div className="form-group">
                                 <label htmlFor="benfAcctNum" className="transfer-label extra" id="admin-transc-label">
                                 Acct Number
@@ -134,6 +157,7 @@ class Operation extends Component {
                               className="admin-select"
                               id="selectOps"
                                required>
+                              <option value="">Select an operation</option> 
                               <option value="FROZEN">FROZEN</option>
                               <option value="SUSPENDED">SUSPENDED</option>
                               <option value="DEACTIVATED">DEACTIVATED</option>
@@ -158,7 +182,7 @@ class Operation extends Component {
                             {errors.pin && <span className="error-message">{errors.pin}</span>}
                         
                             </div>
-                            <button type="submit" className="transfer-btn" id="admin-transc-btn">
+                            <button type="submit" className={opsSubmitBtn} id="admin-transc-btn">
                             Submit
                           </button>
                         </form>
@@ -169,4 +193,14 @@ class Operation extends Component {
     }
 }
 
-export default Operation;
+Operation.propTypes = {
+  operationAction: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+ };
+ 
+ const mapStateToProps = (state) => ({
+   errors: state.errors,
+   response: state.admin.operation
+ });
+ 
+ export default connect(mapStateToProps, {operationAction})(Operation);

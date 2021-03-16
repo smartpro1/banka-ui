@@ -8,13 +8,12 @@ import './Withdrawal.css';
 class Withdrawal extends Component {
 
     render() {
-        const title = "Withdraw";
         return(
             <div className="admin-dashboard">
                 <Sidebar className="admin-dashboard-sidebar"/>
                 <div className="admin-main-dashboard">
                     <Navbar/>
-                    <InitiateTransaction title={title}/>
+                    <InitiateTransaction />
                 </div>    
             </div>
         );

@@ -5,3 +5,7 @@
   border: none;
   outline: none;
 }
+
+.hide-ops {
+  display: none;
+}

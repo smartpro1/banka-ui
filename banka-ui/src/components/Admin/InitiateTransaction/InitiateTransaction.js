@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import CurrencyFormat from "react-currency-format";
 
 import {withdrawalAction, depositAction} from "../../../actions/adminActions";
+import LoadSpinner from "../../../components/LoadSpinner/LoadSpinner";
 
 import './InitiateTransaction.css';
 
@@ -62,19 +63,28 @@ class InitiateTransaction extends Component {
     event.preventDefault();
 
     // this.setState({ isLoading: true });
-    const { acctNum, pin} = this.state;
+    const { acctNum, pin, depositor} = this.state;
     let amount = this.state.amount;
 
     // remove commas from the amount input element caused by CurrencyFormat
     amount = amount.replace(/,/g, "");
-    const transferDetails = {
+    const transactionDetails = {
       acctNum,
       amount,
       pin,
     };
-    const {withdrawalAction} = this.props;
-
-    withdrawalAction(transferDetails);
+    const {withdrawalAction, depositAction} = this.props;
+    if (this.props.title === "Deposit") {
+      transactionDetails.depositor = depositor;
+      console.log("deposit action");
+      console.log( transactionDetails);
+    //  depositAction(transactionDetails);
+    } else {
+      console.log("withdrawal action");
+      console.log( transactionDetails);
+     // withdrawalAction(transactionDetails);
+    }
+    
     // console.log(response);
     // this.setState({response:response});
     // console.log(this.state.response);
@@ -98,7 +108,7 @@ class InitiateTransaction extends Component {
       amount,
       pin,
       depositor,
-     // isLoading,
+     isLoading,
       errors,
      
     } = this.state;
@@ -116,10 +126,12 @@ class InitiateTransaction extends Component {
       );
     }
     
-    // let isLoader = "";
-    // if (isLoading) {
-    //   isLoader = <LoadSpinner />;
-    // }
+    let initiateTransBtn = "transfer-btn";
+    let isLoader = "";
+    if (isLoading) {
+      isLoader = <LoadSpinner />;
+      initiateTransBtn += " hide-ops";
+    }
     
     
     // let transferBtn = "transfer-btn"
@@ -130,10 +142,8 @@ class InitiateTransaction extends Component {
     return (
       <div className="init-transc">
         <form className="init-transc-form" onSubmit={this.handleOnSubmit}>
-          {/*<(div className="signup-logo">
-           </div>*/}
           <h2 id="signup-h2">{title} Fund</h2>
-          {/*isLoader*/}
+          {isLoader}
           {displayErrorMessage}
           <div className="form-group">
             <label htmlFor="acctNum" className="transfer-label extra" id="admin-transc-label">
@@ -206,7 +216,7 @@ class InitiateTransaction extends Component {
             {errors.pin && <span className="error-message">{errors.pin}</span>}
           </div>
           
-          <button type="submit" className="transfer-btn" id="admin-transc-btn">
+          <button type="submit" className={initiateTransBtn} id="admin-transc-btn">
             {title}
           </button>
         </form>
@@ -214,6 +224,10 @@ class InitiateTransaction extends Component {
     );
   }
 }
+
+InitiateTransaction.defaultProps = {
+  title: 'Withdrawal'
+};
 
 InitiateTransaction.propTypes = {
  withdrawalAction: PropTypes.func.isRequired,

@@ -11,6 +11,7 @@
   text-align: center;
   padding: 10px;
   border-radius: 10px;
+  position: relative;
 }
 
 #admin-transc-label {
