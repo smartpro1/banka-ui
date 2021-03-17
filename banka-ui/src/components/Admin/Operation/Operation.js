@@ -7,6 +7,8 @@ import Navbar from '../Layout/Navbar/Navbar';
 import "./Operation.css";
 import LoadSpinner from "../../../components/LoadSpinner/LoadSpinner";
 import {operationAction} from "../../../actions/adminActions";
+import AdminSuccessMesg from '../AdminSuccessMesg/AdminsuccessMesg';
+
 
 class Operation extends Component {
 
@@ -18,7 +20,8 @@ class Operation extends Component {
           pin: "",
           status: "",
           errors: {},
-          isLoading: false
+          isLoading: false,
+          apiResponse: ""
         };
       }
       
@@ -60,7 +63,7 @@ class Operation extends Component {
 
       handleOnSubmit = (event) => {
         event.preventDefault();
-        const { acctNum, pin, status} = this.state;
+        const { acctNum, pin, status, apiResponse} = this.state;
         const adminResponse = window.confirm(`Are you sure you want to set this user's status to ${status}`)
         if (!adminResponse) {
            return;
@@ -70,12 +73,15 @@ class Operation extends Component {
         const operationDetails = {
           acctNum,
           status,
-          pin,
-         
+          pin
         };
-        const {operationAction} = this.props;
-       operationAction(operationDetails);
         
+        const  {operationAction} = this.props;
+        const message = operationAction(operationDetails);
+        message.then(mesg => {
+          this.setState({apiResponse: mesg.payload, isLoading: false, pin: "", acctNum: "",  status: ""});
+        });
+      
       };
     
       componentWillReceiveProps = (nextProps) => {
@@ -94,7 +100,7 @@ class Operation extends Component {
             status,
            isLoading,
             errors,
-           
+           apiResponse
           } = this.state;
 
           let displayErrorMessage = "";
@@ -116,6 +122,11 @@ class Operation extends Component {
             opsSubmitBtn += " hide-ops";
           }
 
+          let adminSuccessMesg =  "";
+          if (apiResponse === "Successful") {
+            adminSuccessMesg = (<AdminSuccessMesg/>);
+          }
+
         return(
           
             <div className="admin-dashboard">
@@ -124,6 +135,7 @@ class Operation extends Component {
                 <div className="admin-main-dashboard">
                     <Navbar/>
                     <div className="init-transc">
+                        {adminSuccessMesg}
                         <form className="init-transc-form" onSubmit={this.handleOnSubmit}>
                             {isLoader}
                             <h2 id="signup-h2">Operation</h2>

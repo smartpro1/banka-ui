@@ -1,0 +1,26 @@
+
+.admin-check-mark{
+    color: #fff;
+    background: #19d3a2;
+    display: inline-block;
+    width: 10%;
+    text-align: center;
+    height:39px;
+    line-height: 39px;
+    margin-right: 10px;
+  }
+  
+  .admin-times-mark{
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 20px;
+    font-size: 21px;
+  }
+  
+  .admin-times-mark:hover{
+    color: coral;
+  }
+
+  .admin-hide-success-mesg-hide{
+      display: none;
+  }

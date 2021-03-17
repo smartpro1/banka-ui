@@ -9,3 +9,14 @@
 .hide-ops {
   display: none;
 }
+
+.admin-success-mesg{
+  border: 1px solid #19d3a2;
+  width:320px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 0px;
+  height: 40px;
+}
+
+

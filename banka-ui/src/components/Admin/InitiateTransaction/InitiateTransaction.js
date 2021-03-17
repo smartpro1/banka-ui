@@ -5,6 +5,7 @@ import CurrencyFormat from "react-currency-format";
 
 import {withdrawalAction, depositAction} from "../../../actions/adminActions";
 import LoadSpinner from "../../../components/LoadSpinner/LoadSpinner";
+import AdminSuccessMesg from '../AdminSuccessMesg/AdminsuccessMesg';
 
 import './InitiateTransaction.css';
 
@@ -19,7 +20,7 @@ class InitiateTransaction extends Component {
       pin: "",
       isLoading: false,
       errors: {},
-      response: {}
+      apiResponse: ""
     };
   }
   
@@ -63,8 +64,9 @@ class InitiateTransaction extends Component {
     event.preventDefault();
 
     // this.setState({ isLoading: true });
-    const { acctNum, pin, depositor} = this.state;
+    const { acctNum, pin, depositor,  apiResponse, isLoading} = this.state;
     let amount = this.state.amount;
+    this.setState({ isLoading: true });
 
     // remove commas from the amount input element caused by CurrencyFormat
     amount = amount.replace(/,/g, "");
@@ -74,22 +76,18 @@ class InitiateTransaction extends Component {
       pin,
     };
     const {withdrawalAction, depositAction} = this.props;
+    let message = "";
     if (this.props.title === "Deposit") {
       transactionDetails.depositor = depositor;
-      console.log("deposit action");
-      console.log( transactionDetails);
-    //  depositAction(transactionDetails);
+      message = depositAction(transactionDetails);
     } else {
-      console.log("withdrawal action");
-      console.log( transactionDetails);
-     // withdrawalAction(transactionDetails);
+      message = withdrawalAction(transactionDetails);
     }
+
+    message.then(mesg => {
+      this.setState({apiResponse: mesg.payload, isLoading: false, pin: "", acctNum: "",  status: "", depositor: ""});
+    });
     
-    // console.log(response);
-    // this.setState({response:response});
-    // console.log(this.state.response);
-    //const { transferFundsAction, history } = this.props;
-    // transferFundsAction(transferDetails, history);
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -110,6 +108,7 @@ class InitiateTransaction extends Component {
       depositor,
      isLoading,
       errors,
+      apiResponse
      
     } = this.state;
 
@@ -132,15 +131,16 @@ class InitiateTransaction extends Component {
       isLoader = <LoadSpinner />;
       initiateTransBtn += " hide-ops";
     }
+
+    let adminsuccessMesg =  "";
+          if (apiResponse === "Successful") {
+            adminsuccessMesg = (<AdminSuccessMesg/>);
+          }
     
-    
-    // let transferBtn = "transfer-btn"
-    // if (isLoading) {
-    //      transferBtn += "-hide";
-    //    }
 
     return (
       <div className="init-transc">
+      {adminsuccessMesg} 
         <form className="init-transc-form" onSubmit={this.handleOnSubmit}>
           <h2 id="signup-h2">{title} Fund</h2>
           {isLoader}
