@@ -45,13 +45,34 @@ class TrackedTransactions extends Component {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    const paginate = (pageNum) => this.setState({ currentPage: pageNum });
-    const nextPage = () => {
-      if (currentPage + 1 > totalPages) return;
+    const setActive = (event) => {
+       document.querySelector(".paginate-active").classList.remove("paginate-active");
+       event.target.classList.add("paginate-active");
+    }
+    const paginate = (event,pageNum) => {
+      setActive(event);
+      this.setState({ currentPage: pageNum });
+    }
+    const nextPage = (event) => {
+
+      if (currentPage + 1 > totalPages) {
+        return;
+      } 
+      
+      const previousCurrElement = document.getElementById(`pag-${currentPage}`);
+      previousCurrElement.classList.remove("paginate-active");
+      const currentElement = document.getElementById(`pag-${currentPage + 1}`);
+      currentElement.classList.add("paginate-active");
       this.setState({ currentPage: currentPage + 1 });
     };
     const prevPage = () => {
-      if (currentPage - 1 < 1) return;
+      if (currentPage - 1 < 1) {
+        return;
+      }  
+      const previousCurrElement = document.getElementById(`pag-${currentPage}`);
+      previousCurrElement.classList.remove("paginate-active");
+      const currentElement = document.getElementById(`pag-${currentPage - 1}`);
+      currentElement.classList.add("paginate-active");
       this.setState({ currentPage: currentPage - 1 });
     };
 

@@ -27,3 +27,7 @@
 .page-link:hover {
   opacity: 0.8;
 }
+
+.paginate-active {
+  background: darkorange;
+}
