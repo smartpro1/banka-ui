@@ -1,0 +1,70 @@
+.tracked-trans-h2 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.toggle-switch-track-trans {
+  position: absolute;
+  top: 14%;
+  right: 3%;
+}
+
+/*The switch - the box around the slider*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  /* -webkit-appearance: none; */
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: #fff;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background: dodgerblue;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px dodgerblue;
+}
+
+.slider.round {
+  border-radius: 34px;
+}

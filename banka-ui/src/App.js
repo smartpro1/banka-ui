@@ -32,11 +32,10 @@ import {SessionTimeOut} from "./components/Session/SessionTimeout";
 import Withdrawal from "./components/Admin/Withdrawal/Withdrawal";
 import Deposit from "./components/Admin/Deposit/Deposit";
 import Operation from  "./components/Admin/Operation/Operation";
-
-
 import {inactiveSessionTimeout} from "./actions/userActions";
-//import Sidebar from "./components/Admin/Layout/Sidebar/Sidebar";
 import AdminDashboard from "./components/Admin/Dashboard/Dashboard";
+import TrackedTransactions from "./components/Admin/TrackedTransactions/TrackedTransactions";
+import TrackTransactions from "./components/Admin/TrackTransactions/TrackTransactions";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -60,11 +59,11 @@ inactiveSessionTimeout();
 function App() {
   let appClass = "App";
   const pathname = window.location.pathname.substr(1);
-  const adminPaths = ['admin-dashboard', 'deposit', 'withdrawal', 'operation', 'transaction', 'admin-sidebar'];
+  const adminPaths = ['admin-dashboard', 'deposit', 'withdrawal', 'operation', 'transaction', 'admin-sidebar', 'tracked-transactions',
+      'track-transactions'
+  ];
   const isAdminPath = adminPaths.includes(pathname);
-  // console.log(pathname);
-  // console.log(isAdminPath);
-  
+
   /**
    * The admin urls will be large screen only, this helps us to break out of the default small screen
    * for other urls
@@ -94,12 +93,15 @@ function App() {
         <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
         <Route path="/reset-passwd-successful" component={ResetPasswdSuccessful} />
         <Route exact path="/session-timeout" component={SessionTimeOut} /> 
-        {/*<Route exact path="/admin-sidebar" component={Sidebar} /> */}
         <Route exact path="/admin-dashboard" component={AdminDashboard} />
         <Route exact path="/withdrawal" component={Withdrawal} />
         <Route exact path="/deposit" component={Deposit} />
         <Route exact path="/operation" component={Operation} />
+        {/*<Route exact path="/pagination" component={Pagination} /> */}
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
+        <Route exact path="/tracked-transactions" component={TrackedTransactions} />
+        <Route exact path="/track-transactions" component={TrackTransactions} />
+        
         
         
           <SecuredRoute exact path="/change-pin" component={ChangePin} />

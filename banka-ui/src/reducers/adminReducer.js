@@ -1,29 +1,25 @@
-import {WITHDRAWAL, DEPOSIT, OPERATION } from "../actions/types";
+
+import { TRACK_TRANSACTIONS, GET_TRANSACTION_BY_ID } from "../actions/types";
+
+
 
 const initialState = {
-  withdrawal: "",
-  deposit: "",
-  operation: ""
+  trackedTransactions: [],
+  getTransactionsById: []
 };
 
 export const adminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case WITHDRAWAL:
+      case TRACK_TRANSACTIONS:
       return {
         ...state,
-        withdrawal: action.payload,
+        trackedTransactions: action.payload,
       };
 
-      case DEPOSIT:
+      case GET_TRANSACTION_BY_ID:
       return {
         ...state,
-        deposit: action.payload,
-      };
-
-      case OPERATION:
-      return {
-        ...state,
-        operation: action.payload,
+        getTransactionsById: action.payload,
       };
 
     default:

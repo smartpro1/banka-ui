@@ -53,7 +53,7 @@ class Sidebar extends Component {
                   className="admin-sidebar-navlink"
                   exact
                   activeClassName="active"
-                  to="/transaction"
+                  to="/track-transactions"
                   >
                   <i className="fa fa-spinner" aria-hidden="true"></i>{" "}
                 &nbsp;

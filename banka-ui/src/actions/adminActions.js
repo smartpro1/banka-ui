@@ -1,13 +1,13 @@
 import axios from "axios";
-import { GET_ERRORS} from "./types";
+import { GET_ERRORS, TRACK_TRANSACTIONS, GET_TRANSACTION_BY_ID} from "./types";
 
 export const withdrawalAction = (transDetails)  => async dispatch =>{
    
     try {
-      //const res = await axios.post(`/api/v1/users/withdraw-funds`, transDetails);
+      const res = await axios.post(`/api/v1/users/withdraw-funds`, transDetails);
       return dispatch({
         type: "WITHDRAWAL",
-        payload: "Successful",
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
@@ -19,10 +19,10 @@ export const withdrawalAction = (transDetails)  => async dispatch =>{
 
   export const depositAction = (transDetails) => async (dispatch) => {
     try {
-     // const res = await axios.post(`/api/v1/users/deposit-funds`, transDetails);
+      const res = await axios.post(`/api/v1/users/deposit-funds`, transDetails);
      return dispatch({
         type: "DEPOSIT",
-        payload: "Successful",
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
@@ -47,20 +47,50 @@ export const withdrawalAction = (transDetails)  => async dispatch =>{
     }
   };
 
-  // export const operationAction = (operationDetails, history) => async (dispatch) => {
-  //   console.log(operationDetails);
+  export const trackTransactionsAction = (dateRange, history) => async (dispatch) => {
+    try {
+      const res = await axios.get(`/api/v1/admins/track-transactions`, dateRange);
+      dispatch({
+        type: TRACK_TRANSACTIONS,
+        payload: res.data,
+      });
+      history.push("/tracked-transactions");
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err,
+      });
+    }
+  };
+
+  export const getTransactionByIdAction = (transactionId, history) => async (dispatch) => {
+    try {
+      const res = await axios.get(`/api/v1/admins/get-transaction/${transactionId}`);
+      dispatch({
+        type: GET_TRANSACTION_BY_ID,
+        payload: res.data,
+      });
+      history.push("/get-transaction-by-id");
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err,
+      });
+    }
+  };
+
+  // export const getTransactionAction = (transactionId, history) => async (dispatch) => {
   //   try {
-  //     const res = await axios.post(`/api/v1/admins/operation`, operationDetails);
-      
+  //     const res = await axios.get(`/api/v1/admins/track-transactions`, transactionId);
   //     dispatch({
-  //       type: OPERATION,
+  //       type: GET_TRANSACTION,
   //       payload: res.data,
   //     });
-  //    history.push("/admin-success");
+  //     history.push("/get-transaction");
   //   } catch (err) {
   //     dispatch({
   //       type: GET_ERRORS,
-  //       payload: err.response.data,
+  //       payload: err,
   //     });
   //   }
   // };

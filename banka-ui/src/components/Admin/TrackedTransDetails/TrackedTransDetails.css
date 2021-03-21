@@ -1,0 +1,37 @@
+.tracked-trans-details-div {
+  overflow-x: auto;
+}
+
+.tracked-trans-table {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.tracked-trans-details-div table,
+.tracked-trans-details-div th,
+.tracked-trans-details-div td {
+  border: 1px solid #bbb;
+  border-collapse: collapse;
+}
+
+.tracked-trans-details-div th {
+  background: dodgerblue;
+  color: #fff;
+}
+
+.tracked-trans-details-div table tr:nth-child(even) {
+  background: #eee;
+}
+
+.tracked-trans-details-div td {
+  text-align: center;
+}
+
+.tracked-trans-details-div th,
+.tracked-trans-details-div td {
+  padding: 10px;
+}
+
+.tracked-trans-details-div table tr:hover {
+  background: #d3d3d3;
+}

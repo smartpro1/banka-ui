@@ -1,0 +1,29 @@
+#pagination-nav {
+  padding: 10px 0;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-item {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 0 10px;
+}
+
+.page-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 4px 8px;
+  background: dodgerblue;
+  border-radius: 2px;
+  margin: 0 5px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-link:hover {
+  opacity: 0.8;
+}
