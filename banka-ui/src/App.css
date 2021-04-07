@@ -50,3 +50,71 @@ body {
 .confirm-registration {
   position: relative;
 }
+
+.status-info {
+  text-align: center;
+}
+.status-info-circle {
+  border: 2px solid mediumseagreen;
+  width: 70px;
+  height: 70px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.status-info-circle.error {
+  border: 2px solid red;
+}
+
+.status-info-success-mark {
+  width: 5px;
+  height: 30px;
+  background: #fff;
+  position: absolute;
+  top: 26%;
+  left: 53%;
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.status-info-success-mark:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 5px;
+  background: #fff;
+  bottom: 0px;
+  right: 4px;
+}
+
+.status-info-error-mark {
+  width: 30px;
+  height: 5px;
+  background: red;
+  position: absolute;
+  top: 45%;
+  left: 28%;
+  transform: rotate(43deg);
+}
+
+.status-info-error-mark:after {
+  content: "";
+  width: 30px;
+  height: 5px;
+  position: absolute;
+  background: red;
+  transform: rotate(-86deg);
+  top: 0;
+  left: 0;
+}
+
+.status-info-header {
+  color: mediumseagreen;
+  margin: 1.5rem 0;
+}
+
+.status-info-header.error {
+  color: rgb(209, 87, 87);
+}

@@ -5,11 +5,13 @@ export const withdrawalAction = (transDetails)  => async dispatch =>{
    
     try {
       const res = await axios.post(`/api/v1/users/withdraw-funds`, transDetails);
+      console.log({res})
       return dispatch({
         type: "WITHDRAWAL",
         payload: res.data,
       });
     } catch (err) {
+      console.log({err});
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
@@ -20,11 +22,14 @@ export const withdrawalAction = (transDetails)  => async dispatch =>{
   export const depositAction = (transDetails) => async (dispatch) => {
     try {
       const res = await axios.post(`/api/v1/users/deposit-funds`, transDetails);
+      console.log({res})
      return dispatch({
         type: "DEPOSIT",
         payload: res.data,
       });
+      
     } catch (err) {
+      console.log({err});
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,

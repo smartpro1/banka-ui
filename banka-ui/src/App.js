@@ -13,6 +13,7 @@ import store from "./store";
 import { LOGIN } from "./actions/types";
 import { logoutAction } from "./actions/userActions";
 import SecuredRoute from "./securityUtils/SecuredRoute";
+import CashierAdminRoute from "./securityUtils/CashierAdminRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ForgotPin from "./components/ForgotPin/ForgotPin";
 import ChangePin from "./components/ChangePin/ChangePin";
@@ -36,6 +37,7 @@ import {inactiveSessionTimeout} from "./actions/userActions";
 import AdminDashboard from "./components/Admin/Dashboard/Dashboard";
 import TrackedTransactions from "./components/Admin/TrackedTransactions/TrackedTransactions";
 import TrackTransactions from "./components/Admin/TrackTransactions/TrackTransactions";
+import ConfirmRegistration from "./components/ConfirmRegistration/ConfirmRegistration";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -70,7 +72,7 @@ function App() {
    */
   if (isAdminPath) {
       appClass+=" admin-app";
-      document.body.style.backgroundImage = "";
+     // document.body.style.backgroundImage = "";
   }
   
   return (
@@ -82,6 +84,30 @@ function App() {
         
         <Switch>
        {/* <Route exact path="/" component={Login} /> */}
+        <CashierAdminRoute exact path="/admin-dashboard" component={AdminDashboard}/> 
+        <CashierAdminRoute exact path="/tracked-transactions" component={TrackedTransactions}/> 
+        <CashierAdminRoute exact path="/tracked-transaction" component={TrackTransactions}/> 
+        <CashierAdminRoute exact path="/withdrawal" component={Withdrawal} />
+        <CashierAdminRoute exact path="/deposit" component={Deposit} />
+
+        {/* AuthenticatedUserRoute  - /dashboard, /profile, /transfer-funds, /transfer-success */ }
+        {/* AnyAuthenticatedPersonRoute - /change-pin, /forgot-pin,  */}
+
+        <SecuredRoute exact path="/change-pin" component={ChangePin} />
+        <SecuredRoute exact path="/forgot-pin" component={ForgotPin} />
+        <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
+        <SecuredRoute exact path="/dashboard" component={Dashboard} />
+        <SecuredRoute exact path="/profile" component={UserProfile} />
+        <SecuredRoute exact path="/transfer-success" component={TransferSuccess} />
+        <SecuredRoute exact path="/change-pin-success" component={ChangePinSuccessful} />
+        <SecuredRoute
+            exact
+            path="/dummy-accounts"
+            component={DummyAccounts}
+          />
+
+
+
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user-guide" component={UserGuide} />
@@ -93,29 +119,19 @@ function App() {
         <Route path="/forgot-passwd-successful" component={ForgotPasswdSuccessful} />
         <Route path="/reset-passwd-successful" component={ResetPasswdSuccessful} />
         <Route exact path="/session-timeout" component={SessionTimeOut} /> 
-        <Route exact path="/admin-dashboard" component={AdminDashboard} />
-        <Route exact path="/withdrawal" component={Withdrawal} />
-        <Route exact path="/deposit" component={Deposit} />
-        <Route exact path="/operation" component={Operation} />
+        {/* <Route exact path="/admin-dashboard" component={AdminDashboard} />
+         <Route exact path="/withdrawal" component={Withdrawal} />
+      <Route exact path="/deposit" component={Deposit} /> */}
+        
         {/*<Route exact path="/pagination" component={Pagination} /> */}
         {/*<Route exact path="/transfer-success" component={TransferSuccess} /> */}
-        <Route exact path="/tracked-transactions" component={TrackedTransactions} />
-        <Route exact path="/track-transactions" component={TrackTransactions} />
+        {/*<Route exact path="/tracked-transactions" component={TrackedTransactions} />
+         <Route exact path="/track-transactions" component={TrackTransactions} />
+    <Route exact path="/test" component={ConfirmRegistration} /> */}
         
         
         
-          <SecuredRoute exact path="/change-pin" component={ChangePin} />
-          <SecuredRoute exact path="/forgot-pin" component={ForgotPin} />
-          <SecuredRoute exact path="/transfer-funds" component={TransferFund} />
-          <SecuredRoute exact path="/dashboard" component={Dashboard} />
-          <SecuredRoute exact path="/profile" component={UserProfile} />
-          <SecuredRoute exact path="/transfer-success" component={TransferSuccess} />
-          <SecuredRoute exact path="/change-pin-success" component={ChangePinSuccessful} />
-          <SecuredRoute
-            exact
-            path="/dummy-accounts"
-            component={DummyAccounts}
-          />
+        {/*<CashierAdminRoute exact path="admin-dashboard" component={AdminDashboard}/> */} 
           <Route component={Error404} />
         </Switch>
       </div>

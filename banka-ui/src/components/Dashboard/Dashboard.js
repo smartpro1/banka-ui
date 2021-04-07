@@ -9,6 +9,7 @@ import CurrencyFormat from "react-currency-format";
 import Logo from "../Logo/Logo";
 import TransferDetails from "./TransferDetails";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
+import LineChart from "../Chart/LineChart";
 
 import "./Dashboard.css";
 
@@ -132,7 +133,9 @@ class Dashboard extends Component {
               </div>
             </div>
 
-            <div className="chart"></div>
+            <div className="chart">
+              <LineChart />
+            </div>
           </div>
           {res}
         </div>

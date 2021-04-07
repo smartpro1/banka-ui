@@ -10,14 +10,14 @@
   margin-top: 20px;
 }
 
-.success-white-tick {
+/* .success-white-tick {
   position: relative;
   display: inline-block;
   width: 30px;
   height: 30px;
-}
+} */
 
-.success-white-tick::before {
+/* .success-white-tick::before {
   position: absolute;
   left: 0;
   top: 50%;
@@ -39,4 +39,4 @@
   content: "";
   transform: translateX(10px) rotate(-45deg);
   transform-origin: left bottom;
-}
+} */

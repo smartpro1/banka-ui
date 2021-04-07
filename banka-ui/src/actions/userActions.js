@@ -36,12 +36,22 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
       type: LOGIN,
       payload: decodedJwtToken,
     });
-    history.push("/dashboard");
+     
+    // history.push("/dashboard");
+    console.log({decodedJwtToken});
+    if(decodedJwtToken.roles.includes("ROLE_USER")) {
+      history.push("/dashboard");
+    } else {
+      let appClass = "App";
+      appClass+=" admin-app";
+      history.push("/admin-dashboard");
+    }
+    
     inactiveSessionTimeout();
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data,
+      payload: err.data,
     });
   }
 };

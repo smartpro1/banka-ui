@@ -6,9 +6,7 @@ import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import "./ConfirmRegistration.css";
 
 const ConfirmRegistration = (props) => {
-  console.log(props);
     const {fullname} = props;
-    console.log(fullname);
     const mesg = (
         <div>
         <h3 className="confirm-h3">Congratulations, <span className="info-change-pin">{fullname}</span> your  registration is now complete.</h3>
