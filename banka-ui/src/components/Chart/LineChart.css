@@ -1,15 +1,7 @@
-/* .linechart-div{
-    width: 500px;
-    height: 500px;
-    background: gainsboro;
-    position: absolute;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-} */
 
-#myChart{
+.chartjs-render-monitor{
     width:95%;
     height: 90%;
-    margin: 20px auto;
+    margin: 40px auto;
+    background: #fff;
 }

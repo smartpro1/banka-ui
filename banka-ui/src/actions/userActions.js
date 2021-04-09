@@ -38,7 +38,6 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     });
      
     // history.push("/dashboard");
-    console.log({decodedJwtToken});
     if(decodedJwtToken.roles.includes("ROLE_USER")) {
       history.push("/dashboard");
     } else {

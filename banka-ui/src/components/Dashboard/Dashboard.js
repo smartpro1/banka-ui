@@ -77,7 +77,7 @@ class Dashboard extends Component {
 
     const transactions = login.loginCredentials.transactions;
     
-    const res = transactions.map(trans =>{
+    let res = transactions.map(trans =>{
       
       return(
         <TransferDetails
@@ -90,6 +90,20 @@ class Dashboard extends Component {
     
      )
     });
+
+    if(res.length === 0) {
+      res = (
+        <TransferDetails
+        date=""
+        description="You have no transaction yet, your last five transactions 
+        will be displayed here. You have been given a #25000 bonus so as to be 
+        able to make transfers, you don't have to thank us for that 😎"
+        amount=""
+        transactionType=""
+      />
+      );
+     
+    }
     
 
     return (

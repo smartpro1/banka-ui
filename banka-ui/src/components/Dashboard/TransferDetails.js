@@ -3,9 +3,9 @@ import CurrencyFormat from "react-currency-format";
 
 import "./TransferDetails.css";
 class TransferDetails extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     const { date, description, amount, transactionType } = this.props;
@@ -18,6 +18,7 @@ class TransferDetails extends Component {
             <p>{date}</p>
             <h4>{description}</h4>
           </div>
+          {amount &&
           <div className={transactionClass}>
             &#x20A6;
             <CurrencyFormat
@@ -27,6 +28,7 @@ class TransferDetails extends Component {
             />
             {".00"}
           </div>
+  }
         </div>
       </div>
     );
