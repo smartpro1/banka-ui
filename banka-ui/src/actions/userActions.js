@@ -41,8 +41,6 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
     if(decodedJwtToken.roles.includes("ROLE_USER")) {
       history.push("/dashboard");
     } else {
-      let appClass = "App";
-      appClass+=" admin-app";
       history.push("/admin-dashboard");
     }
     
@@ -105,7 +103,7 @@ export const forgotPasswordAction = (email, history) => async (dispatch) => {
 
 export const forgotPinAction = (email, history) => async (dispatch) => {
   try {
-    await axios.post(`/api/v1/users/forgot-password`, email);
+    await axios.post(`/api/v1/users/forgot-pin`, email);
     history.push("/forgot-pin-successful");
     dispatch({
       type: GET_ERRORS,
@@ -123,6 +121,24 @@ export const resetPasswordAction = (password, history) => async (dispatch) => {
   try {
     await axios.post(`/api/v1/users/reset-password`, password);
     history.push("/reset-passwd-successful");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const resetPinAction = (pinCredentials, history) => async (
+  dispatch
+) => {
+  try {
+    await axios.post(`/api/v1/users/reset-pin`, pinCredentials);
+    history.push("/change-pin-success");
     dispatch({
       type: GET_ERRORS,
       payload: {},

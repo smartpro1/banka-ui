@@ -15,7 +15,7 @@ const ForgotPinSuccessful = () => {
         <div className="confirm-sth">
            <h1 className="confirm-h1">Pin Reset Request Successful</h1>
            <SuccessMessage message={mesg}/>
-           <Link to="/" className="trans-btn got-it-btn">
+           <Link to="/reset-pin" className="trans-btn got-it-btn">
                 OK
               </Link>
         </div>

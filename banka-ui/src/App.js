@@ -38,6 +38,7 @@ import AdminDashboard from "./components/Admin/Dashboard/Dashboard";
 import TrackedTransactions from "./components/Admin/TrackedTransactions/TrackedTransactions";
 import TrackTransactions from "./components/Admin/TrackTransactions/TrackTransactions";
 import ConfirmRegistration from "./components/ConfirmRegistration/ConfirmRegistration";
+import ResetPin from "./components/ResetPin/ResetPin";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -100,6 +101,7 @@ function App() {
         <SecuredRoute exact path="/profile" component={UserProfile} />
         <SecuredRoute exact path="/transfer-success" component={TransferSuccess} />
         <SecuredRoute exact path="/change-pin-success" component={ChangePinSuccessful} />
+        <SecuredRoute exact path="/reset-pin" component={ResetPin} />
         <SecuredRoute
             exact
             path="/dummy-accounts"

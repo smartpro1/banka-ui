@@ -3,34 +3,19 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { forgotPinAction } from "../../actions/userActions";
+import "./ForgotPin.css";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
-import "./ForgotPin.css";
 class ForgotPin extends Component {
   constructor() {
     super();
 
     this.state = {
       email: "",
-      isLoading: false,
       errors: {},
+      isLoading: false,
     };
   }
-
-  handleOnChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  handleOnSubmit = (event) => {
-    event.preventDefault();
-    this.setState({ isLoading: true });
-    const { email } = this.state;
-
-    const { forgotPinAction, history } = this.props;
-    forgotPinAction(email, history);
-  };
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.errors) {
@@ -41,8 +26,36 @@ class ForgotPin extends Component {
     }
   };
 
+  handleOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ isLoading: true });
+    const email = this.state.email;
+    const userEmail = { email };
+    const { forgotPinAction, history } = this.props;
+    forgotPinAction(userEmail, history);
+  };
+
+  
+
   render() {
     const { email, isLoading, errors } = this.state;
+    let displayErrorMessage = "";
+
+    if (errors.EmailSendingException) {
+      displayErrorMessage = (
+        <div className="login-err-mesg">
+          {" "}
+          <i className="fa fa-bell-slash-o" aria-hidden="true"></i>{" "}
+          &nbsp;{errors.EmailSendingException}
+        </div>
+      );
+    }
 
     let isLoader = (
       <button type="submit" className="register-btn">
@@ -55,7 +68,7 @@ class ForgotPin extends Component {
     }
 
     return (
-      <div className="forgot-pin">
+      <div className="signup">
         <div className="signup-logo">
           <h3>
             <a href="/">
@@ -65,22 +78,25 @@ class ForgotPin extends Component {
           </h3>
         </div>
         <h2 id="signup-h2" className="fgt-password">
-          Forgot Pin
+          Reset Pin
         </h2>
-        <form className="form-forgot-pin" onSubmit={this.handleOnSubmit}>
+        {displayErrorMessage}
+        <form className="forgot-password-form" onSubmit={this.handleOnSubmit}>
           <div className="signup-container">
             <input
               className="signup-input"
               type="email"
-              placeholder="email"
+              placeholder="enter your valid email to reset pin"
               name="email"
-              disabled={isLoading}
-              onChange={this.handleOnChange}
               value={email}
+              onChange={this.handleOnChange}
+              disabled={isLoading}
               required
             />
-            {errors.email && (
-              <span className="error-message">{errors.email}</span>
+            {errors.invalidCredentialException && (
+              <span className="error-message">
+                {errors.invalidCredentialException}
+              </span>
             )}
           </div>
           {isLoader}
@@ -99,4 +115,6 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { forgotPinAction })(ForgotPin);
+export default connect(mapStateToProps, { forgotPinAction })(
+  ForgotPin
+);
