@@ -10,6 +10,10 @@ class ResetPin extends Component {
   constructor() {
     super();
 
+    this.currentPin = "";
+    this.newPin = "";
+    this.confirmNewPin = "";
+
     this.state = {
       currentPin: "",
       newPin: "",
@@ -18,7 +22,7 @@ class ResetPin extends Component {
       errors: {},
     };
   }
-
+   
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.errors) {
       this.setState({
@@ -32,27 +36,9 @@ class ResetPin extends Component {
 
   handleOnChange = (event) => {
     const [name, value] = [event.target.name, event.target.value];
-    let currentPin = "";
-    let newPin = "";
-    let confirmNewPin = "";
 
-    if(name ==="currentPin") {
-      currentPin = value.length;
-    }
-
-    if(name ==="newPin") {
-      newPin = value;
-    }
-
-    if(name ==="confirmNewPin") {
-      confirmNewPin = value;
-    }
-
-    if ((currentPin > 3 && currentPin < 9) && newPin === confirmNewPin) {
-      this.setState({ errors: {}});
-    }
-   
     if (name ==="currentPin") {
+      this.currentPin = value;
       let currentPinError = {};
       if (value.length < 4 ) {
         currentPinError.currentPin = "pin must be between 4 to 8 digits";
@@ -66,6 +52,7 @@ class ResetPin extends Component {
     }
 
     if (name ==="newPin") {
+      this.newPin = value;
       let newPinError = {};
       if (value.length < 4 ) {
         newPinError.newPin = "pin must be between 4 to 8 digits";
@@ -80,6 +67,7 @@ class ResetPin extends Component {
 
     //  validation for confirm new pin
     if (name === "confirmNewPin" && value.length > 0) {
+      this.confirmNewPin = value;
       let confirmNewPinError = {};
       let newPinError = {};
       const { newPin } = this.state;
@@ -95,7 +83,7 @@ class ResetPin extends Component {
 
       if (newPin.length < 4 ) {
           confirmNewPinError.confirmNewPin =
-          "fill in  new pin field first which cannot be empty or less than four characters";
+          "fill in new pin field first which cannot be empty or less than four characters";
         this.setState({ errors: confirmNewPinError, confirmNewPin: "" });
         return;
       }
@@ -108,6 +96,12 @@ class ResetPin extends Component {
       }
     }
     this.setState({ [name]: value });
+    
+    if((this.currentPin.length > 3 && this.currentPin.length < 9) 
+      && (this.newPin.length > 3 && this.newPin.length < 9) 
+      && ( this.newPin ===  this.confirmNewPin)) {
+        this.setState({errors: {}});
+      }
   };
 
   handleOnSubmit = (event) => {
@@ -121,6 +115,7 @@ class ResetPin extends Component {
       newPin,
       confirmNewPin,
     };
+  
     const { resetPinAction, history } = this.props;
     resetPinAction(pinCredentials, history);
   };

@@ -23,7 +23,6 @@ export const signupAction = (userDetails, history, fullname) => async (dispatch)
 export const loginAction = (userCredentials, history) => async (dispatch) => {
   try {
     const res = await axios.post(`/api/v1/users/login`, userCredentials);
-
     //extract token from res.data
     const { token } = res.data;
     // store the token in local storage
@@ -48,7 +47,7 @@ export const loginAction = (userCredentials, history) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.data,
+      payload: err.response.data,
     });
   }
 };

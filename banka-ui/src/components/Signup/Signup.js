@@ -9,6 +9,10 @@ class SignUp extends Component {
   constructor() {
     super();
 
+    this.phoneNumber = "";
+    this.password = "";
+    this.confirmPassword = "";
+
     this.state = {
       fullname: "",
       sex: "",
@@ -25,6 +29,16 @@ class SignUp extends Component {
   handleOnChange = (event) => {
     const [name, value] = [event.target.name, event.target.value];
     this.setState({ [name]: value });
+    
+    if (name === "phoneNumber") {this.phoneNumber = value};
+    if (name === "password") {this.password = value};
+    if (name === "confirmPassword") {this.confirmPassword = value};
+    
+    if(this.phoneNumber.length === 11
+      && this.password.length > 5
+      && this.password.length > 5 
+      && this.password === this.confirmPassword) 
+      { this.setState({errors: {}})};
 
     // validation for phone number
     if (name === "phoneNumber" && value.length > 1) {
@@ -51,7 +65,7 @@ class SignUp extends Component {
         this.setState({ errors: phoneNumberError });
       }
     }
-
+    
     //  validation for confirm password
     if (name === "confirmPassword" && value.length > 0) {
       let confirmPasswordError = {};
@@ -153,6 +167,7 @@ class SignUp extends Component {
       );
     }
 
+
     return (
       <div className="signup">
         <div className="signup-logo">
@@ -175,7 +190,7 @@ class SignUp extends Component {
               onChange={this.handleOnChange}
               disabled={isLoading}
               value={fullname}
-              minLength="6"
+              minLength="4"
               required
             />
             {errors.fullname && (

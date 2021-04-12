@@ -10,6 +10,10 @@ class ChangePin extends Component {
   constructor() {
     super();
 
+    this.currentPin = "";
+    this.newPin = "";
+    this.confirmNewPin = "";
+
     this.state = {
       currentPin: "",
       newPin: "",
@@ -34,6 +38,7 @@ class ChangePin extends Component {
     const [name, value] = [event.target.name, event.target.value];
    
     if (name ==="currentPin") {
+      this.currentPin = value;
       let currentPinError = {};
       if (value.length < 4 ) {
         currentPinError.currentPin = "pin must be between 4 to 8 digits";
@@ -47,6 +52,7 @@ class ChangePin extends Component {
     }
 
     if (name ==="newPin") {
+      this.newPin = value;
       let newPinError = {};
       if (value.length < 4 ) {
         newPinError.newPin = "pin must be between 4 to 8 digits";
@@ -61,6 +67,7 @@ class ChangePin extends Component {
 
     //  validation for confirm new pin
     if (name === "confirmNewPin" && value.length > 0) {
+      this.confirmNewPin = value;
       let confirmNewPinError = {};
       let newPinError = {};
       const { newPin } = this.state;
@@ -89,6 +96,11 @@ class ChangePin extends Component {
       }
     }
     this.setState({ [name]: value });
+    if((this.currentPin.length > 3 && this.currentPin.length < 9) 
+    && (this.newPin.length > 3 && this.newPin.length < 9) 
+    && ( this.newPin ===  this.confirmNewPin)) {
+      this.setState({errors: {}});
+    }
   };
 
   handleOnSubmit = (event) => {
